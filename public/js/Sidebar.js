@@ -141,6 +141,9 @@ function Sidebar(sidebarData, sidebarIcon) {
       `
       )
       .join("")}
+      <div>
+          <a href="http://localhost:8000/nhac-moi" class="btn btn-primary">Nhạc mới</a>
+        </div>
   </div>
   <div class = 'sidebar__divide'></div>
   <div class="sidebar__footer">
