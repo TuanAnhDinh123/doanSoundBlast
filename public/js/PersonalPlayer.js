@@ -160,12 +160,16 @@ function libraryRender() {
       <div class='library__head'>
             <h3>Library</h3>
       </div>
+      
       <div class='library__body'>
         <div class='library__subtitle'>
             <h5>Đã thêm gần đây</h5>
         </div>
         <div class='library__albums'>
           <div class='albums__parent'>
+          
+
+
             ${libraryData
               .map(
                 (obj) =>

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\queryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,5 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index1');
+    return view('layouts.index');
 });
+Route::get('/nhac-moi', [queryController::class,'testView']);
