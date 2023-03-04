@@ -23,7 +23,7 @@
         @endforeach
     </div>
     <div class="col-1">
-        <p>{{$song->albumName}}</p>
+        <p>{{$song->genreName}}</p>
     </div>
     <div class="col-1">
         <p><span>{{$song->numberOfLike}}K</span> <svg color="red" xmlns="http://www.w3.org/2000/svg" width="20" height="16"
