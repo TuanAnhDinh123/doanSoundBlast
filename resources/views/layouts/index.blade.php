@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sound Blast</title>
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/player.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -83,9 +85,45 @@
                 <div class="container mt-5 mr-2" style="width:1000px">
                     @yield('content')
                 </div>
+                
+            </div>
+            <div id="audio-player-container">
+                <audio src="{{asset('uploads/music/ChuyenDoiTa.mp3')}}" preload="metadata" loop></audio>
+                <div class="left-container col-3">
+                    <div class="col-2">
+                        <img class="img-thumbnail" src="{{asset('uploads/images/song/bongbenhbongbenh.jpg')}}" alt="">
+                    </div>
+                    <div class="col-10 pl-2">
+                        <p class="">
+                            Bồng Bềnh Bồng Bềnh
+                        </p>
+                    </div>
+                </div>
+                <div class="center-container col-6">
+                    <div class="button-container">
+                        <button id="pre-icon"><i class="fa fa-step-backward"></i></button>
+                        <button id="play-icon"><i class="fa-regular fa-circle-play"></i></button>
+                        <!-- <button id="play-icon"></i></button> -->
+                        <button id="next-icon"><i class="fa fa-step-forward"></i></button>
+    
+                    </div>
+                    <div class="seek-container">
+                        <span id="current-time" class="time">0:00</span>
+                        <input type="range" id="seek-slider" max="100" value="0">
+                        <span id="duration" class="time">0:00</span>
+                    </div>
+                </div>
+                <div class="right-container col-3 d-flex">
+                    <div class="volume-container">
+                        <output id="volume-output">100</output>
+                        <input type="range" id="volume-slider" max="100" value="100">
+                        <button id="mute-icon"><i class="fa-solid fa-volume-high"></i></button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <script src="{{asset('js/player.js')}}"></script>
 </body>
 
 </html>
