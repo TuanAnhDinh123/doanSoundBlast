@@ -24,22 +24,24 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
         integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous">
     </script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <!-- <link rel="icon" type="image/png" href="./assets/icons/icon_zing_mp3_60.png"> -->
 </head>
 
 <body>
     <div class="container-fluid">
         <div class="row" style="min-height:745px">
-            <div class=" col-2" style="background:#3b1761">
+            <div id="sidebar" class="col-2" style="background:#3b1761">
                 @include('sidebar')
             </div>
             <div class="col-10" style="background:#320c59">
-                <div class="row  ">
+                <div class="row header  ">
                     <div class="col-10">
                         <div class="row p-3 justify-content-center">
                             <div class="col-6" style="position: relative;">
-                                <form class="form-inline my-2 my-lg-0" role="search" action="{{route('search')}}" method="get">
+                                <form class="form-inline my-2 my-lg-0" role="search" action="{{route('search')}}"
+                                    method="get">
                                     <div class="form-group has-search">
                                         <span class="fa fa-search"></span>
                                         <input type="text"
@@ -50,15 +52,15 @@
                                     <!-- Mới đổi thẻ div qua thẻ button -->
                                     <button type="submit" class="icon-search" style="
                                                         position: absolute;
-                                                        top: 5px;
-                                                        right: 31px;
-                                                        "> 
+                                                        top: 3px;
+                                                        right: 35px;
+                                                        ">
                                         <svg xmlns="http://www.w3.org/2000/svg" color="#ffffff" width="16" height="16"
                                             fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                             <path
                                                 d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                                         </svg>
-                                    </button> 
+                                    </button>
 
                                 </form>
                             </div>
@@ -82,20 +84,20 @@
                         </svg>
                     </div>
                 </div>
-                <div class="container mt-5 mr-2" style="width:1000px">
+                <div class="container mr-2" style="width:1000px;margin-top: 100px;">
                     @yield('content')
                 </div>
                 
             </div>
             <div id="audio-player-container">
-                <audio src="{{asset('uploads/music/ChuyenDoiTa.mp3')}}" preload="metadata" loop></audio>
+                <audio src="{{asset('uploads/music/'.$songs[0]->mp3)}}" preload="metadata" loop></audio>
                 <div class="left-container col-3">
                     <div class="col-2">
-                        <img class="img-thumbnail" src="{{asset('uploads/images/song/bongbenhbongbenh.jpg')}}" alt="">
+                        <img class="img-thumbnail" id="left-container-img" src="{{asset('uploads/images/song/'.$songs[0]->img)}}" alt="">
                     </div>
                     <div class="col-10 pl-2">
-                        <p class="">
-                            Bồng Bềnh Bồng Bềnh
+                        <p class="" id="left-container-name">
+                            {{$songs[0]->songName}}
                         </p>
                     </div>
                 </div>
@@ -127,3 +129,13 @@
 </body>
 
 </html>
+<script>
+$(document).ready(function() {
+    $.lockfixed("#sidebar", {
+        offset: {
+            top: 20,
+            bottom: 470
+        }
+    });
+});
+</script>

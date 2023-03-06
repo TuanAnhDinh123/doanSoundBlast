@@ -154,7 +154,40 @@ volumeSlider.addEventListener('input', (e) => {
     audio.volume = value / 100;
 });
 // Add source mp3 for audio tag
-const playBtn = document.querySelectorAll('.playBtn');
-playBtn.addEventListener('click', () => {
-    const sourceLink = playBtn
-});
+const playBtns = document.querySelectorAll('.playBtn');
+const nextBtn = document.getElementById('next-icon')
+const preBtn = document.getElementById('pre-icon')
+const songIndex = 0;
+for (var i=0; i<playBtns.length; i++){
+    playBtns[i].addEventListener("click",function(){
+        const sourceLink = this.querySelector('.songPath');
+        const songIMG = this.querySelector('.songImg');
+        const songName = this.querySelector('.songName');
+        const imgContainer = document.getElementById("left-container-img");
+        const nameContainer = document.getElementById("left-container-name");
+        audio.src = sourceLink.innerHTML;
+        imgContainer.src = songIMG.innerHTML;
+        nameContainer.innerHTML = songName.innerHTML;
+        const songIndex = this.querySelector('.songIndex').innerHTML;
+        audio.play();
+        requestAnimationFrame(whilePlaying);
+        playState = 'pause';
+        playIconContainer.innerHTML = "<i class='fa-solid fa-pause'></i>";
+        console.log(songIndex);
+        return songIndex;
+    });
+}
+nextBtn.addEventListener("click",function(){
+    console.log(songIndex);
+    songIndex = parseInt(songIndex)+1;
+    console.log(songIndex);
+    audio.src = sourceLink.innerHTML;
+    imgContainer.src = songIMG.innerHTML;
+    nameContainer.innerHTML = songName.innerHTML;
+    audio.play();
+    requestAnimationFrame(whilePlaying);
+    playState = 'pause';
+    playIconContainer.innerHTML = "<i class='fa-solid fa-pause'></i>";
+    console.log(songIndex);
+
+})
