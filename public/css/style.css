@@ -98,10 +98,15 @@
 }
 
 .card-body-st {
-    height: 113px;
+    height: 130px;
 }
 
 .link-heart {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.link-like {
     text-decoration: none;
     color: #ffffff;
 }

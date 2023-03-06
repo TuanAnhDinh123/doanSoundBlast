@@ -16,7 +16,7 @@
                     </h5>
                     @foreach ($songArtists as $artistSub)
                     @if ($artistSub->songID == $song->songID)
-                    <p class="sub-string-link">{{$artistSub->artistName}}</p>
+                    <p class="sub-string-link">{{$artistSub->artistName}}</p>                   
                     @endif
                     @endforeach
                 </div>
