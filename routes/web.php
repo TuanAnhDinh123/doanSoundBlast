@@ -14,10 +14,10 @@ use App\Http\Controllers\queryController;
 */
 
 Route::get('/', function () {
-    return view('layouts.index');
+    return redirect()->route('trending');
 });
 Route::get('/ca-nhan', [queryController::class,'myMysic']);
-Route::get('/trending', [queryController::class,'trending']);
+Route::get('/trending', [queryController::class,'trending'])->name('trending');
 Route::get('/nhac-moi', [queryController::class,'musicNew']);
 Route::get('/top-nghe-si', [queryController::class,'musician']);
 Route::get('/the-loai', [queryController::class,'category']);

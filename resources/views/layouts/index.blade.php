@@ -96,17 +96,18 @@
                     </div>
                     <div class="col-10 pl-2">
                         <p class="" id="left-container-name">
-                            {{$songs[0]->songName}}
+                        {{$songs[0]->songName}}
                         </p>
+                        <p id="saveIndex" class="d-none">0</p>    
                     </div>
                 </div>
                 <div class="center-container col-6">
                     <div class="button-container">
                         <button id="pre-icon"><i class="fa fa-step-backward"></i></button>
-                        <button id="play-icon"><i class="fa-regular fa-circle-play"></i></button>
-                        <!-- <button id="play-icon"></i></button> -->
+                        <button id="play-icon">
+                            <i class="fa-regular fa-circle-play"></i>
+                        </button>
                         <button id="next-icon"><i class="fa fa-step-forward"></i></button>
-    
                     </div>
                     <div class="seek-container">
                         <span id="current-time" class="time">0:00</span>

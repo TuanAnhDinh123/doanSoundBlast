@@ -102,6 +102,9 @@ const setSliderMax = () => {
 const displayBufferedAmount = () => {
     const bufferedAmount = Math.floor(audio.buffered.end(audio.buffered.length - 1));
     audioPlayerContainer.style.setProperty('--buffered-width', `${(bufferedAmount / seekSlider.max) * 100}%`);
+    console.log('bufferAmount');
+    console.log(bufferedAmount);
+    // console.log("audio.buffer.length".audio.buffered.length);
 }
 
 const whilePlaying = () => {
@@ -155,39 +158,45 @@ volumeSlider.addEventListener('input', (e) => {
 });
 // Add source mp3 for audio tag
 const playBtns = document.querySelectorAll('.playBtn');
+const sourceLink = document.querySelectorAll('.songPath');
+const songIMG = document.querySelectorAll('.songImg');
+const songName = document.querySelectorAll('.songName');
 const nextBtn = document.getElementById('next-icon')
 const preBtn = document.getElementById('pre-icon')
 const songIndex = 0;
+const songArr = [];
 for (var i=0; i<playBtns.length; i++){
     playBtns[i].addEventListener("click",function(){
+        const saveIndex = document.getElementById("saveIndex");
+        const imgContainer = document.getElementById("left-container-img");
+        const nameContainer = document.getElementById("left-container-name");
         const sourceLink = this.querySelector('.songPath');
         const songIMG = this.querySelector('.songImg');
         const songName = this.querySelector('.songName');
-        const imgContainer = document.getElementById("left-container-img");
-        const nameContainer = document.getElementById("left-container-name");
+        const songIndex = this.querySelector('.songIndex');
         audio.src = sourceLink.innerHTML;
         imgContainer.src = songIMG.innerHTML;
         nameContainer.innerHTML = songName.innerHTML;
-        const songIndex = this.querySelector('.songIndex').innerHTML;
+        saveIndex.innerHTML = songIndex.innerHTML;
         audio.play();
         requestAnimationFrame(whilePlaying);
         playState = 'pause';
         playIconContainer.innerHTML = "<i class='fa-solid fa-pause'></i>";
-        console.log(songIndex);
-        return songIndex;
     });
+    songArr.push([sourceLink[i].innerHTML,songIMG[i].innerHTML,songName[i].innerHTML]);
 }
 nextBtn.addEventListener("click",function(){
+    const saveIndex = document.getElementById("saveIndex");
+    const songIndex = parseInt(saveIndex.innerHTML) + 1;
+    const imgContainer = document.getElementById("left-container-img");
+    const nameContainer = document.getElementById("left-container-name");
     console.log(songIndex);
-    songIndex = parseInt(songIndex)+1;
-    console.log(songIndex);
-    audio.src = sourceLink.innerHTML;
-    imgContainer.src = songIMG.innerHTML;
-    nameContainer.innerHTML = songName.innerHTML;
+    audio.src = songArr[songIndex][0];
+    imgContainer.src = songArr[songIndex][1];
+    nameContainer.innerHTML = songArr[songIndex][2];
+    saveIndex.innerHTML = songIndex;
     audio.play();
-    requestAnimationFrame(whilePlaying);
-    playState = 'pause';
-    playIconContainer.innerHTML = "<i class='fa-solid fa-pause'></i>";
-    console.log(songIndex);
-
+        requestAnimationFrame(whilePlaying);
+        playState = 'pause';
+        playIconContainer.innerHTML = "<i class='fa-solid fa-pause'></i>";
 })
