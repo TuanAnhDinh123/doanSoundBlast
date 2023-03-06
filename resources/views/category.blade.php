@@ -20,16 +20,15 @@
                     @if ($artist->songID == $song->songID)
                     <p class="sub-string-link">{{$artist->artistName}}</p>
                     @endif
-                    @endforeach
-                </div>
+                    @endforeach                   
+                </div>               
             </div>
     </div>
     @endif
     @endforeach
 </div>
-
 @endforeach
-</div>
+
 
 
 @endsection

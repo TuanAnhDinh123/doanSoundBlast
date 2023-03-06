@@ -26,10 +26,9 @@
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <!-- <link rel="icon" type="image/png" href="./assets/icons/icon_zing_mp3_60.png"> -->
 </head>
-
 <body>
     <div class="container-fluid">
-        <div class="row" style="min-height:745px">
+        <div class="row" style="min-height:100vh">
             <div id="sidebar" class="col-2" style="background:#3b1761">
                 @include('sidebar')
             </div>
