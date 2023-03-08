@@ -118,4 +118,7 @@ class queryController extends Controller
         return view("detail_music");
     }
 
+    public function homepage(){
+        return view("homepage");
+    }
 }

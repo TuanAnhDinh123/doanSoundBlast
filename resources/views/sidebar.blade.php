@@ -1,11 +1,13 @@
 <div style="position: sticky;top: 0">
     <div class="row text-center">
-        <p class="navbar-brand logo" style="font-size:24px" href="#">Sound Blast</p>
+        {{-- <p class="navbar-brand logo" style="font-size:24px" href="#">Sound Blast</p> --}}
+        <a href="/homepage" class="navbar-brand logo">
+            <img src="{{asset('logo.png')}}" alt=""  height="100px" width="100px" border-radius="10px" type="button" ></a>
     </div>
     <nav class="mt-2">
-        <ul class="nav nav-sidebar flex-column">
-            <li class="nav-item nav-item has-treeview menu-open" style="height:40px">
-                <a href="/ca-nhan" class="nav-link active">
+        <ul class="nav nav-sidebar flex-column " >
+            <li class="nav-item nav-item has-treeview menu-open"  style="height:40px">
+                <a href="/ca-nhan" class="nav-link active" >
 
                     <div class="d-flex">
                     <span class="mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"

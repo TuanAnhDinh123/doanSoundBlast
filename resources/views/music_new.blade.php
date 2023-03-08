@@ -1,6 +1,6 @@
 @extends('layouts/index')
 @section('content')
-<h2 class="text-center  mb-3 title">Nhạc mới</h2>
+<h2 class="mb-3 title">Nhạc Mới</h2>
 @foreach ($songs as $index=>$song)
 <div class="row mb-2 music"
     style="border-radius:10px;border:1px solid;border-color: aquamarine;padding:5px;align-items: center">
@@ -53,11 +53,12 @@
         <p class="songPath d-none">{{asset('uploads/music/'.$song->mp3)}}</p>
         <p class="songImg d-none">{{asset('uploads/images/song/'.$song->img)}}</p>
         <p class="songName d-none">{{$song->songName}}</p>
-        <p><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-play-fill"
+        <p><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-play-fill"
                 viewBox="0 0 16 16">
                 <path
                     d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
-            </svg></p>
+            </svg>
+        </p>
     </div>
 </div>
 @endforeach
