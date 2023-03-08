@@ -85,6 +85,13 @@ class queryController extends Controller
         if ($songs->isEmpty()){
             $result = 0;
         }
+        // Increte number of search to DB
+        foreach ($songs as $song) {
+            $searchNum = $song->numberOfSearch + 1;
+            DB::table('song')
+            ->where('songID', $song->songID)
+            ->update(['numberOfSearch'=>$searchNum]);
+        }
         return view("music_search")
         ->with(['songs'=>$songs, 'songArtists'=>$songArtists, 'result'=>$result]);
     }

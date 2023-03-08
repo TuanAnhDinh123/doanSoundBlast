@@ -15,7 +15,7 @@
     </div>
     <div class="col-2">
         <p class="sub-string">Ca Sĩ :Thái Học</p>
-    </div>
+    </div>s
     <div class="col-2">
         <p class="sub-string">Album Nhạc Việt123213</p>
     </div>
