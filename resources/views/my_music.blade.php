@@ -59,12 +59,14 @@
     <div class="col-2">
         <p class="text-left">2023-04-03</p>
     </div>
-    <div class="col-1">
-        <p><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-play-fill"
+    <div class="col-1" type="button">
+        <p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-play-fill"
                 viewBox="0 0 16 16">
                 <path
                     d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
-            </svg></p>
+            </svg>
+        </p>
     </div>
 </div>
 

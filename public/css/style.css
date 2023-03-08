@@ -28,7 +28,7 @@
 }
 
 .nav-sidebar .nav-item:hover {
-    background-color: #686869;
+    background-color: #9966CB;
 }
 
 .comment-border {
@@ -107,7 +107,17 @@
     color: #ffffff;
 }
 
-.link-like {
-    text-decoration: none;
-    color: #ffffff;
+.card{
+    position: relative;
 }
+
+.play{
+    position: absolute;
+    top: 75px;
+    right: 85px;
+}
+
+.play:hover{
+    opacity: 0.7;
+}
+

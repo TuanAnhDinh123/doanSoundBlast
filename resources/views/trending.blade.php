@@ -1,6 +1,6 @@
 @extends('layouts/index')
 @section('content')
-<h2 class="text-center title mb-3"> View Treding</h2>
+<h2 class=" title mb-3">Top Trending</h2>
 @foreach ($songs as $index=>$song)
 <div class="row mb-2 music"
     style="border-radius:10px;border:1px solid;border-color: aquamarine;padding:5px;align-items: center">
@@ -24,7 +24,7 @@
         @endforeach
     </div>
     <div class="col-2">
-        <p class="sub-string">{{$song->genreName}}12312312</p>
+        <p class="sub-string">{{$song->genreName}}</p>
     </div>
     <div class="col-1">
         <p><span>{{$song->numberOfLike}}K</span><a class="link-heart" href="#">
@@ -50,8 +50,8 @@
                     d="M8 3a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V8a6 6 0 1 1 12 0v5a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1V8a5 5 0 0 0-5-5z" />
             </svg></p>
     </div>
-    <div class="col-1">
-        <p><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-play-fill"
+    <div class="col-1"type="button">
+        <p><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-play-fill"
                 viewBox="0 0 16 16">
                 <path
                     d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
