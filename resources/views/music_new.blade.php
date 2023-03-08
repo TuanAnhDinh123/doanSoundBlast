@@ -46,7 +46,7 @@
             </a></p>
     </div>
     <div class="col-2">
-        <p class="text-left">{{$song->createAt}}</p>
+        <p class="text-left">{{$song->diffTime}}</p>
     </div>
     <div class="col-1 playBtn" type="button">
         <p class="songIndex d-none">{{$index}}</p>

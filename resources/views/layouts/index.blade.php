@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sound Blast</title>
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/player.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -39,10 +41,10 @@
                             <div class="col-6" style="position: relative;">
                                 <form class="form-inline my-2 my-lg-0" role="search" action="{{route('search')}}">
                                     <div class="form-group has-search">
-                                        <span class="fa fa-search"></span>
+                                        <!-- <span class="fa fa-search"></span> -->
                                         <input type="text" style="background:#6c3b9f;border:0px;border-radius: 20px;"
                                             name="name" class="form-control input-search"
-                                            placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát...">
+                                            placeholder="Tìm kiếm bài hát">
                                     </div>
                                     <div class="icon-search" style="
                                                         position: absolute;
@@ -83,8 +85,7 @@
                 </div>
                 
             </div>
-            
-            <!-- <div id="audio-player-container" style="background:#3b1761"> -->
+            <div class="container-buffer" ></div>
             <div id="audio-player-container">
                 <audio src="" preload="metadata" loop></audio>
                 <div class="left-container col-3">

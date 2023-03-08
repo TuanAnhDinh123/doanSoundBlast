@@ -15,14 +15,11 @@ button {
     float: left;
 }
 #audio-player-container {
-    /* margin: 100px 2.5% auto 2.5%; */
     width: 100%;
-    /* max-width: 500px; */
     height: 100px;
-    /* background: rgba(50,12,89,0.5); */
     background: rgba(19,12,28,0.75);
     position: -webkit-sticky; /* Safari */
-    position: sticky;
+    position: fixed;
     display: flex;
     bottom: 0;
     z-index: 1;
@@ -215,4 +212,9 @@ input[type="range"]::-ms-thumb {
 input[type="range"]:active::-ms-thumb {
     transform: scale(1.2);
     background: #007db5;
+}
+
+.container-buffer{
+    height: 100px;
+    background:#3b1761;
 }
