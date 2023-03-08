@@ -87,16 +87,16 @@
                 </div>
                 
             </div>
-            <div id="audio-player-container" style="background:#3b1761">
-                <audio src="{{asset('uploads/music/'.$songs[0]->mp3)}}" preload="metadata" loop></audio>
+            
+            <!-- <div id="audio-player-container" style="background:#3b1761"> -->
+            <div id="audio-player-container">
+                <audio src="" preload="metadata" loop></audio>
                 <div class="left-container col-3">
                     <div class="col-2">
-                        <img class="img-thumbnail" id="left-container-img" src="{{asset('uploads/images/song/'.$songs[0]->img)}}" alt="">
+                        <img class="img-thumbnail" id="left-container-img" src="" alt="">
                     </div>
                     <div class="col-10 pl-2">
-                        <p class="" id="left-container-name">
-                        {{$songs[0]->songName}}
-                        </p>
+                        <p class="" id="left-container-name"></p>
                         <p id="saveIndex" class="d-none">0</p>    
                     </div>
                 </div>

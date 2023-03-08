@@ -21,6 +21,9 @@ class queryController extends Controller
         ->join('song-artist','song.songID','song-artist.songID')
         ->join('artist','artist.artistID','song-artist.artistID')
         ->select()->get();
+        // foreach ($songs as $song){
+        //     $song
+        // }
         return view("trending")->with(['songs'=>$songs, 'songArtists'=>$songArtists]);
     }
     public function musicNew(){
@@ -118,7 +121,4 @@ class queryController extends Controller
         return view("detail_music");
     }
 
-    public function homepage(){
-        return view("homepage");
-    }
 }
