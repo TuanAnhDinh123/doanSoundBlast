@@ -48,7 +48,7 @@
     <div class="col-2">
         <p class="text-left">{{$song->createAt}}</p>
     </div>
-    <div class="col-1 playBtn">
+    <div class="col-1 playBtn" type="button">
         <p class="songIndex d-none">{{$index}}</p>
         <p class="songPath d-none">{{asset('uploads/music/'.$song->mp3)}}</p>
         <p class="songImg d-none">{{asset('uploads/images/song/'.$song->img)}}</p>
