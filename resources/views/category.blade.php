@@ -19,7 +19,7 @@
                     </h5>
                     @foreach ($songArtists as $index1=>$artist)
                     @if ($artist->songID == $song->songID)
-                    <p class="sub-string-link d-flex">{{$artist->artistName}}</p>                    
+                    <p class="sub-string-link">{{$artist->artistName}}</p>                    
                     @endif
                     @endforeach
                     <div class="play playBtn" type="button">
