@@ -138,4 +138,15 @@ class queryController extends Controller
         return view("detail_music");
     }
 
+    //Handle Ajax
+    public function changeLike($id, $number){
+        DB::table('song')
+            ->where('songID', $id)
+            ->update(['numberOfLike'=>$number]);
+        $songs = DB::table('song')
+        ->where('songID', $id)
+        ->select('numberOfLike')->get();
+        foreach ($songs as $song)
+        echo $song->numberOfLike;
+    }
 }

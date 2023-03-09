@@ -122,6 +122,7 @@
         </div>
     </div>
     <script src="{{asset('js/player.js')}}"></script>
+    <script src="{{asset('js/ajax.js')}}"></script>
 </body>
 
 </html>
