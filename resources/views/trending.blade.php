@@ -1,6 +1,6 @@
 @extends('layouts/index')
 @section('content')
-<h2 class=" title mb-3">Top Trending</h2>
+<h2 class=" title mb-3">Thịnh Hành</h2>
 @foreach ($songs as $index=>$song)
 <div class="row mb-2 music"
     style="border-radius:10px;border:1px solid;border-color: aquamarine;padding:5px;align-items: center">

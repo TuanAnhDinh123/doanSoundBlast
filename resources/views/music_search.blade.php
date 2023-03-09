@@ -11,7 +11,7 @@
             <div class="card">
                 <img src="{{asset('uploads/images/song/'.$song->img)}}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title"><a class="card-title-link" href="{{route('detail', ['id' => 1])}}">
+                    <h5 class="card-title"><a class="card-title-link sub-string-link" href="{{route('detail', ['id' => 1])}}">
                         {{$song->songName}}
                     </a>
                     </h5>

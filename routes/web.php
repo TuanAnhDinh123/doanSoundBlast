@@ -25,4 +25,3 @@ Route::get('/search', [queryController::class,'search'])->name('search');
 Route::get('/top-search', [queryController::class,'topSearch']);
 Route::get('/chart', [queryController::class,'chart']);
 Route::get('/detail/{id}', [queryController::class,'detail'])->name('detail');
-Route::get('/homepage', [queryController::class,'homepage']);

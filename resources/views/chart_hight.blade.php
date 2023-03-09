@@ -15,12 +15,12 @@
     </div>
     <div class="col-2">
         <p class="sub-string">Ca Sĩ :Thái Học</p>
-    </div>s
+    </div>
     <div class="col-2">
         <p class="sub-string">Album Nhạc Việt123213</p>
     </div>
     <div class="col-2">
-        <p><span>1000</span><a class="link-heart" href="#">
+        <p><span>100k</span><a class="link-heart" href="#">
                 @if(1 == 1)
                 <svg color="red" xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="currentColor"
                     class="bi bi-heart-fill" viewBox="0 0 16 16">

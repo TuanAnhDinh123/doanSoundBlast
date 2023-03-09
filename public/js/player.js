@@ -185,9 +185,22 @@ for (var i=0; i<playBtns.length; i++){
     });
     songArr.push([sourceLink[i].innerHTML,songIMG[i].innerHTML,songName[i].innerHTML]);
 }
+//Handle first time load song'data
+window.onload = function(){
+    const imgContainer = document.getElementById("left-container-img");
+    const nameContainer = document.getElementById("left-container-name");
+    audio.src = songArr[0][0];
+    imgContainer.src = songArr[0][1];
+    nameContainer.innerHTML = songArr[0][2];
+}
+
+// handle Next and Previous Button
 nextBtn.addEventListener("click",function(){
     const saveIndex = document.getElementById("saveIndex");
-    const songIndex = parseInt(saveIndex.innerHTML) + 1;
+    let songIndex = parseInt(saveIndex.innerHTML) + 1;
+    if (songIndex == songArr.length) {
+        songIndex = 0;
+    }
     const imgContainer = document.getElementById("left-container-img");
     const nameContainer = document.getElementById("left-container-name");
     console.log(songIndex);
@@ -195,8 +208,23 @@ nextBtn.addEventListener("click",function(){
     imgContainer.src = songArr[songIndex][1];
     nameContainer.innerHTML = songArr[songIndex][2];
     saveIndex.innerHTML = songIndex;
-    audio.play();
-        requestAnimationFrame(whilePlaying);
-        playState = 'pause';
-        playIconContainer.innerHTML = "<i class='fa-solid fa-pause'></i>";
+    if(playState === 'pause') {
+        audio.play();
+    }
+})
+preBtn.addEventListener("click",function(){
+    const saveIndex = document.getElementById("saveIndex");
+    let songIndex = parseInt(saveIndex.innerHTML) - 1;
+    if (songIndex < 0) {
+        songIndex = songArr.length - 1;
+    }
+    const imgContainer = document.getElementById("left-container-img");
+    const nameContainer = document.getElementById("left-container-name");
+    audio.src = songArr[songIndex][0];
+    imgContainer.src = songArr[songIndex][1];
+    nameContainer.innerHTML = songArr[songIndex][2];
+    saveIndex.innerHTML = songIndex;
+    if(playState === 'pause') {
+        audio.play();
+    }
 })

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 // use DB;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class queryController extends Controller
 {
@@ -32,6 +33,25 @@ class queryController extends Controller
         ->join('song-artist','song.songID','song-artist.songID')
         ->join('artist','artist.artistID','song-artist.artistID')
         ->select()->get();
+
+        // Get different time
+        $date1 = carbon::now();
+        foreach ($songs as $song){
+            $date2 = $song->createAt;
+            $diff = abs(strtotime($date2) - strtotime($date1));
+            $years = floor($diff / (365*60*60*24));
+            $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+            $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+            if ($years > 0) {
+                $kq = $years." năm trước";
+            } elseif ($months > 0) {
+                $kq = $months." tháng trước";
+            } else {
+                $kq = $days." ngày trước";
+            }
+            $song->diffTime = $kq;
+        }
+        
         return view("music_new")
         ->with(['songs'=>$songs, 'songArtists'=>$songArtists]);
     }
@@ -118,7 +138,4 @@ class queryController extends Controller
         return view("detail_music");
     }
 
-    public function homepage(){
-        return view("homepage");
-    }
 }
