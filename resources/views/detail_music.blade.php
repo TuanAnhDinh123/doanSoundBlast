@@ -1,6 +1,6 @@
 @extends('layouts/index')
 @section('content')
-<h2 class="title mb-3">Nhạc Sĩ : </h2>
+<h2 class="title mb-3">Nhạc sĩ : </h2>
 <div class="row">
     <div class="col-6">
         <div class="row">

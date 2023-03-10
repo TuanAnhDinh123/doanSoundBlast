@@ -1,6 +1,6 @@
 @extends('layouts/index')
 @section('content')
-<h2 class=" title mb-3">Thịnh Hành</h2>
+<h2 class=" title mb-3">Thịnh hành</h2>
 @foreach ($songs as $index=>$song)
 <div class="row mb-2 music"
     style="border-radius:10px;border:1px solid;border-color: aquamarine;padding:5px;align-items: center">
@@ -26,7 +26,7 @@
     <div class="col-2">
         <p class="sub-string">{{$song->genreName}}</p>
     </div>
-    <div class="col-3 row">
+    <div class="col-3 row" type="button">
         <div class="col-5">
             <p class="likeIconContainer">
                 <span class="numberOfLike">{{$song->numberOfLike}}</span>K
@@ -46,7 +46,7 @@
                         d="M8 3a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V8a6 6 0 1 1 12 0v5a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1V8a5 5 0 0 0-5-5z" />
                 </svg></p>
         </div>
-        <div class="col-2 playBtn"type="button">
+        <div class="col-2 playBtn">
             <p class="songIndex d-none">{{$index}}</p>
             <p class="songPath d-none">{{asset('uploads/music/'.$song->mp3)}}</p>
             <p class="songImg d-none">{{asset('uploads/images/song/'.$song->img)}}</p>
