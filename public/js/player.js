@@ -161,6 +161,7 @@ const playBtns = document.querySelectorAll('.playBtn');
 const sourceLink = document.querySelectorAll('.songPath');
 const songIMG = document.querySelectorAll('.songImg');
 const songName = document.querySelectorAll('.songName');
+const numberOfHear = document.querySelectorAll('.numberOfHear');
 const nextBtn = document.getElementById('next-icon')
 const preBtn = document.getElementById('pre-icon')
 const songIndex = 0;
@@ -182,9 +183,18 @@ for (var i=0; i<playBtns.length; i++){
         requestAnimationFrame(whilePlaying);
         playState = 'pause';
         playIconContainer.innerHTML = "<i class='fa-solid fa-pause'></i>";
+
+        //Handle increase number of hear
+        const songID = this.querySelector('.songID');
+        const songNo = this.querySelector('.songNo');
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET","hear/"+songID.innerHTML,true);
+        xmlhttp.send();
+        numberOfHear[songNo.innerHTML].innerHTML ++;
     });
-    songArr.push([sourceLink[i].innerHTML,songIMG[i].innerHTML,songName[i].innerHTML]);
+    songArr.push([sourceLink[i].innerHTML, songIMG[i].innerHTML, songName[i].innerHTML]);
 }
+
 //Handle first time load song'data
 window.onload = function(){
     const imgContainer = document.getElementById("left-container-img");

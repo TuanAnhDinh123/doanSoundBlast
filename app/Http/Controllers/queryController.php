@@ -143,10 +143,15 @@ class queryController extends Controller
         DB::table('song')
             ->where('songID', $id)
             ->update(['numberOfLike'=>$number]);
+    }
+    public function changeHear($id){
         $songs = DB::table('song')
         ->where('songID', $id)
-        ->select('numberOfLike')->get();
-        foreach ($songs as $song)
-        echo $song->numberOfLike;
+        ->select('numberOfHear')->get();
+        foreach ($songs as $song){
+        DB::table('song')
+            ->where('songID', $id)
+            ->update(['numberOfHear'=>$song->numberOfHear+1]);
+        }
     }
 }
