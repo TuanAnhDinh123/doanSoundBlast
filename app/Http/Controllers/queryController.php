@@ -149,4 +149,12 @@ class queryController extends Controller
         foreach ($songs as $song)
         echo $song->numberOfLike;
     }
+
+    public function login(){
+        return view("login");
+    }
+
+    public function register(){
+        return view("register");
+    }
 }

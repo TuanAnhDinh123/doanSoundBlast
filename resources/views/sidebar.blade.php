@@ -1,8 +1,8 @@
 <div style="position: sticky;top: 0">
     <div class="row text-center">
         {{-- <p class="navbar-brand logo" style="font-size:24px" href="#">Sound Blast</p> --}}
-        <a href="/" class="navbar-brand logo">
-            <img src="{{asset('logo.png')}}" alt=""  height="100px" width="100px" border-radius="10px" type="button" ></a>
+        <a href="/" class="navbar-brand logo ">
+            <img src="{{asset('logo.png')}}" alt=""  height="120px" width="220px" type="button" ></a>
     </div>
     <nav class="mt-2">
         <ul class="nav nav-sidebar flex-column " >

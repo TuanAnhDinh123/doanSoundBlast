@@ -13,12 +13,17 @@
         <div class="container py-3"  >
             <div class="row justify-content-around mt-4">
                 <form action="" class="col-md-6 bg-light p-3 my-3" style="align-items:center">
-                    <h1 class="text-center text-uppercase h3 py-3">Login</h1>
+                    <h1 class="text-center text-uppercase h3 py-3">Register</h1>
+                    <div class="form-group">
+                        <label for="txtname">Fullname:</label>
+                        <input type="text" name="txtname" id="txtname" class="form-control" required>
+                    </div>
                     
                     <div class="form-group">
                         <label for="txtuser">Username:</label>
                         <input type="text" name="txtuser" id="txtuser" class="form-control" required>
-                    </div>                    
+                    </div>
+                    
                     <div class="form-group">
                         <label for="txtpass">Password:</label>
                         <input type="password" name="txtpass" id="txtpass" class="form-control" required>
@@ -30,11 +35,11 @@
                             </label>
                         </div>
                         <div class="form-group mx-auto " >        
-                            <a href="/register" style="text-decoration-none">Register</a>
+                            <a href="/login" style="text-decoration-none">Sign in</a>
                         </div>
                     </div>
                     <div class="form-group py-3 ">
-                        <input type="submit" value="SIGN IN" class="btn btn-primary mb-2 ">
+                        <input type="submit" value="SIGN UP" class="btn btn-primary mb-2 ">
                     </div>
                 </form>
                 
