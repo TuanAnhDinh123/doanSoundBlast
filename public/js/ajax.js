@@ -23,15 +23,16 @@
                 likeStatus.innerHTML = 1;
                 number++;
                 songIcon.innerHTML = heartIcon[1];
+                numberOfLike.innerHTML = number;
             } else{
                 likeStatus.innerHTML = 0;
                 number--;
                 songIcon.innerHTML = heartIcon[0];
+                numberOfLike.innerHTML = number;
             }
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function(){
                 if(this.status=200 && this.readyState == 4){
-                    numberOfLike.innerHTML = this.responseText;
                      
                 }
             }

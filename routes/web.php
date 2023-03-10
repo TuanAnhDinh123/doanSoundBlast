@@ -26,5 +26,6 @@ Route::get('/top-search', [queryController::class,'topSearch']);
 Route::get('/chart', [queryController::class,'chart']);
 Route::get('/detail/{id}', [queryController::class,'detail'])->name('detail');
 Route::get('/like/{id}/{number}', [queryController::class,'changeLike'])->name('like');
+Route::get('/hear/{id}', [queryController::class,'changeHear']);
 Route::get('/login', [queryController::class,'login']);
 Route::get('/register', [queryController::class,'register']);
