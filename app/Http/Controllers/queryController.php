@@ -154,4 +154,9 @@ class queryController extends Controller
             ->update(['numberOfHear'=>$song->numberOfHear+1]);
         }
     }
+
+    // Handle Login
+    public function login(){
+        return view('login');
+    }
 }
