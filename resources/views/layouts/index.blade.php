@@ -3,9 +3,11 @@
 
 <head>
     <meta charset="UTF-8" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sound Blast</title>
+    <link rel="icon" href="logo.png">       
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="{{asset('css/player.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
@@ -26,6 +28,7 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     
 
     <!-- <link rel="icon" type="image/png" href="./assets/icons/icon_zing_mp3_60.png"> -->
@@ -80,18 +83,65 @@
                                 <ul class="dropdown-menu" style="background:#3b1761" >
                                     <li class="dropdown-item"><a class="nav-link active"  href="#" >Giới thiệu</a></li>
                                     <li class="dropdown-item"><a class="nav-link active"  href="#" >Liên Hệ</a></li>
-                                    <li class="dropdown-item"><a class="nav-link active"  href="#" >Send Feedback</a></li>
+                                    @if (!empty($user))    
+                                        <li class="dropdown-item"><a class="nav-link active" type="button" data-bs-toggle="modal" data-bs-target="#myModal">Send Feedback</a></li>
+                                    @else
+                                        <li class="dropdown-item"><a class="nav-link active" type="button" data-toggle="tooltip" title="Đăng nhập để gửi feedback">Send Feedback</a></li>
+                                    @endif
                                 </ul>
+                            </div>
+                            <!-- The Modal -->
+                            <div class="modal" id="myModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Gửi feedback cho chúng tôi</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                <form action="feedback-request" class="bg-light p-3 my-3" style="align-items:center" method="post">
+                                {{csrf_field() }}
+                                @if (!empty($user))    
+                                    <input type="text" name="txtURL" class="d-none" value="{{url()->current()}}">
+                                    <input type="text" name="txtUserID" class="d-none" value="{{$user->id}}">
+                                    <div class="form-group">
+                                        <textarea name="feedback" id="" cols="50" rows="5" class="form-control border border-dark"></textarea>
+                                    </div>                    
+                                    <div class="form-group py-3 ">
+                                        <input type="submit" value="Gửi" class="btn btn-primary mb-2 ">
+                                    </div>
+                                @endif
+                                </form>
+                                </div>
+
+                                <!-- Modal footer
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                </div> -->
+
+                                </div>
+                            </div>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="dropdown" style="border-radius:10px;align-items: center">
                                 <button data-bs-toggle="dropdown" aria-expanded="false" width="30" height="30" >
-                                    <img class="img-thumbnail" src="{{asset('/puclic/logo.png')}}" alt="" >
+                                @if (!empty($user))    
+                                <img class="img-thumbnail img-thumbnail-avatar" src="{{asset('/uploads/images/avatar/'.$user->img)}}" alt="" >
+                                @else
+                                <img class="img-thumbnail img-thumbnail-avatar" src="{{asset('/uploads/images/avatar/unknow.png')}}" alt="" >
+                                @endif
                             </button>
                                 <ul class="dropdown-menu" style="background:#3b1761">
-                                    <li class="dropdown-item"><a class="nav-link active" href="/login">Đăng Nhập</a></li>
-                                    <li class="dropdown-item"><a class="nav-link active" class="dropdown-item" href="">Đăng Xuất</a></li>                          
+                                @if (!empty($user))    
+                                <li class="dropdown-item"><a class="nav-link active" class="dropdown-item" href="/logout">Đăng Xuất</a></li>
+                                @else                        
+                                <li class="dropdown-item"><a class="nav-link active" href="/login">Đăng Nhập</a></li>
+                                @endif
                                 </ul>
                             </div>
                         </div>
@@ -105,12 +155,17 @@
             </div>
             <div class="container-buffer" ></div>
             <div id="audio-player-container">
-                <audio src="" preload="metadata" loop></audio>
+                <audio src="{{asset('uploads/music/EmDongY.mp3')}}" preload="metadata" loop></audio>
                 <div class="left-container col-3">
                     <div class="col-2">
                         <img class="img-thumbnail" id="left-container-img" src="" alt="">
                     </div>
                     <div class="col-10 pl-2">
+                    @if (!empty($user))    
+                        <p class="d-none" id="userIDcontainer">{{$user->id}}</p>
+                    @else
+                        <p class="d-none" id="userIDcontainer">0</p>
+                    @endif
                         <p class="" id="left-container-name"></p>
                         <p id="saveIndex" class="d-none">0</p>    
                     </div>
