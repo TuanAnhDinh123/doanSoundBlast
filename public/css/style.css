@@ -139,3 +139,12 @@
     background-color: #9966CB;
 }
 
+/* Sidebar Tag css */
+.sidebar-tag-active{
+    background-color: #9966CB;
+}
+#containerCmt{
+    overflow-y: scroll;
+    max-height: 500px;
+}
+
