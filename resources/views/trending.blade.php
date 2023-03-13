@@ -5,18 +5,24 @@
 @foreach ($songs as $index=>$song)
 <div class="row mb-2 music"
     style="border-radius:10px;border:1px solid;border-color: aquamarine;padding:5px;align-items: center">
-    <div class="col-1 stt text-center">
-        <p>{{$index+1}}</p>
+    <div class="col-2 row">    
+        {{-- STT --}}
+        <div class="col-6 stt text-center">
+            <p>{{$index+1}}</p>
+        </div>
+        {{-- avatar --}}
+        <div class="col-6">
+            <img class="img-thumbnail" src="{{asset('uploads/images/song/'.$song->img)}}" alt="">
+        </div>        
     </div>
-    <div class="col-1">
-        <img class="img-thumbnail" src="{{asset('uploads/images/song/'.$song->img)}}" alt="">
-    </div>
+    {{-- bài hát --}}
     <div class="col-3">
         <p>
             <a class="link" href="{{route('detail', ['id' => $song->songID])}}">{{$song->songName}}
             </a>
         </p>
     </div>
+    {{-- nghệ sĩ --}}
     <div class="col-2 d-flex">
         @foreach ($songArtists as $index1=>$artist)
         @if ($artist->songID == $song->songID)
@@ -24,10 +30,13 @@
         @endif
         @endforeach
     </div>
+    {{-- thể loại --}}
     <div class="col-2">
         <p class="sub-string">{{$song->genreName}}</p>
     </div>
-    <div class="col-3 row">
+
+    <div class="col-3 row" style="position: relative">
+        {{-- tim --}}
         <div class="col-5">
             @if (!empty($user))    
             <p class="likeIconContainer">
@@ -53,14 +62,16 @@
             </p>
             @endif
         </div>
-        <div class="col-5">
+        {{-- lượt nghe --}}
+        <div class="col-5" style="position:absolute; left:90px">
             <p><span class="numberOfHear">{{$song->numberOfHear}}</span>K <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                     fill="currentColor" class="bi bi-headphones" viewBox="0 0 16 16">
                     <path
                         d="M8 3a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V8a6 6 0 1 1 12 0v5a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1V8a5 5 0 0 0-5-5z" />
                 </svg></p>
         </div>
-        <div class="col-2 playBtn" type="button">
+        {{-- play --}}
+        <div class="col-1 playBtn" type="button" style="position:absolute; left:170px">
             <p class="songID d-none">{{$song->songID}}</p>
             <p class="songNo d-none">{{$songNo}}</p>
             <p class="songIndex d-none">{{$index}}</p>
@@ -73,7 +84,12 @@
                         d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
                 </svg></p>
         </div>
-
+        <div class="col" type="button" style="position:absolute; left:230px; bottom:4px">
+            <svg color="white" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+              </svg>
+        </div>
     </div>
     @php $songNo++; @endphp
 </div>

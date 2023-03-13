@@ -3,22 +3,28 @@
 <div class="row">
     <div class="col-6">
         <div class="row">
-
             <div class="card" style="">
                 <img src="{{asset('uploads/images/song/'.$song->img)}}" class="card-img-top" alt="...">
             </div>
             <div class="info">
-                <h5 class="title mt-3 mb-3">{{$song->songName}}</h5>
-                <h4 class="title mt-3 mb-3">Ca sĩ: </h4>
-                <div class="lyrics">
-                    @foreach ($songArtists as $index1=>$artist)
-                    @if ($artist->songID == $song->songID)
-                    <p class="sub-string" style="color:#ffffff">{{$artist->artistName}}</p>
-                    @endif
-                    @endforeach
+                <div class="row d-flex">
+                    <h5 class="title mt-3 mb-3">{{$song->songName}}</h5>
+                    <div class="col-6">                       
+                        <h4 class="title mt-3 mb-3">Ca sĩ: </h4>
+                        <div class="lyrics">
+                            @foreach ($songArtists as $index1=>$artist)
+                            @if ($artist->songID == $song->songID)
+                            <p class="sub-string" style="color:#ffffff">{{$artist->artistName}}</p>
+                            @endif
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="col-6 row d-flex">                     
+                        <h4 class="title mt-3 mb-3">Sáng tác: </h4>
+                        <p style="color:#ffffff">{{$song->authorName}}</p>
+                    </div>
                 </div>
-                <h4 class="title mt-3 mb-3">Sáng tác: </h4>
-                <p style="color:#ffffff">{{$song->authorName}}</p>
+                               
                 <h4 class="title mt-3 mb-3">Thể loại: </h4>
                 <p style="color:#ffffff">{{$song->genreName}}</p>
                 <p style="color:#ffffff">{{$song->numberOfLike}} lượt thích</p>
@@ -43,13 +49,14 @@
             <div class="comment mb-3" id="containerCmt">
                 <div class="d-flex justify-content-center row comment-border">
                     <div class="">
+                        <div class="progress-bar" id="myBar"></div>
                         @foreach($cmts as $cmt)
                         <div class="d-flex flex-column comment-section">
                             <div class="bg-white p-2">
                                 <div class="d-flex flex-row user-info"><img class="rounded-circle"
-                                        src="{{asset('/uploads/images/avatar/'.$cmt->img)}}" width="40">
-                                    <div class="d-flex flex-column justify-content-start ml-2"><span
-                                            class="d-block font-weight-bold name">{{$cmt->name}}</span>
+                                        src="{{asset('/uploads/images/avatar/'.$cmt->img)}}" width="40" height="40">
+                                    <div class="d-flex flex-column justify-content-start ml-2 m-2 "><span
+                                            class="d-block font-weight-bold name fw-bold">{{$cmt->name}}</span>
                                             <span class="date text-black-50">
                                             {{$cmt->cmtAt}}</span>
                                         </div>
@@ -64,7 +71,7 @@
                     </div>
                 </div>
             </div>
-            <div class="bg-light p-2">
+            <div class="bg-light">
                 <form id="postCmtForm" action="/cmt" method="post">
                 {{csrf_field() }}
                     <input type="text" value="{{$song_ID}}" class="d-none" name="songID">
@@ -88,4 +95,6 @@
         </div>
     </div>
 </div>
+
+
 @endsection

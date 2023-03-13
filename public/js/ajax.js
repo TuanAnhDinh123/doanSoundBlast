@@ -61,4 +61,3 @@ for (i=0; i<sidebarTag.length; i++) {
     $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();   
     });
-    
