@@ -12,34 +12,32 @@
       <div id="wrapper"style="background:#320c59; height:100vh; " >
         <div class="container py-3"  >
             <div class="row justify-content-around mt-4">
-                <form action="" class="col-md-6 bg-light p-3 my-3" style="align-items:center">
+                <form action="register-request" method="post" class="col-md-6 bg-light p-3 my-3" style="align-items:center"  enctype="multipart/form-data">
+                {{csrf_field() }}
                     <h1 class="text-center text-uppercase h3 py-3">Register</h1>
                     <div class="form-group">
                         <label for="txtname">Fullname:</label>
                         <input type="text" name="txtname" id="txtname" class="form-control" required>
                     </div>
-                    
                     <div class="form-group">
-                        <label for="txtuser">Username:</label>
-                        <input type="text" name="txtuser" id="txtuser" class="form-control" required>
+                        <label for="name">Username:</label>
+                        <input type="text" name="name" id="txtuser" class="form-control" required>
                     </div>
-                    
                     <div class="form-group">
-                        <label for="txtpass">Password:</label>
-                        <input type="password" name="txtpass" id="txtpass" class="form-control" required>
+                        <label for="password">Password:</label>
+                        <input type="password" name="password" id="txtpass" class="form-control" required>
                     </div>
-                    <div class="form-group d-flex ">
-                        <div class="form-group">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="remember"> Remember me
-                            </label>
-                        </div>
-                        <div class="form-group mx-auto " >        
-                            <a href="/login" style="text-decoration-none">Sign in</a>
-                        </div>
+                    <div class="form-group">
+                        <label for="img">Avatar</label>
+                        <input type="file" name="img" class="form-control">
                     </div>
                     <div class="form-group py-3 ">
                         <input type="submit" value="SIGN UP" class="btn btn-primary mb-2 ">
+                    </div>
+                    <div class="form-group d-flex ">
+                        <div class="form-group mx-auto " >        
+                            <a href="/login" style="text-decoration-none">Sign in</a>
+                        </div>
                     </div>
                 </form>
                 

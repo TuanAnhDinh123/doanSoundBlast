@@ -137,16 +137,15 @@ seekSlider.addEventListener('input', () => {
 });
 
 seekSlider.addEventListener('change', () => {
-    audio.currentTime = 10;
-    console.log(seekSlider.value)
-    console.log(audio.currentTime)
+    audio.onprogress  = function(){
+        audio.currentTime = 100;
+        console.log(audio.currentTime)
 
+    }
     if(!audio.paused) {
         requestAnimationFrame(whilePlaying);
     }
     console.log("change")
-    console.log(seekSlider.value)
-    console.log(audio.currentTime)
 
 });
 
@@ -164,6 +163,7 @@ const songName = document.querySelectorAll('.songName');
 const numberOfHear = document.querySelectorAll('.numberOfHear');
 const nextBtn = document.getElementById('next-icon')
 const preBtn = document.getElementById('pre-icon')
+const userID = document.getElementById('userIDcontainer')
 const songIndex = 0;
 const songArr = [];
 for (var i=0; i<playBtns.length; i++){
@@ -188,14 +188,16 @@ for (var i=0; i<playBtns.length; i++){
         const songID = this.querySelector('.songID');
         const songNo = this.querySelector('.songNo');
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET","hear/"+songID.innerHTML,true);
+        xmlhttp.open("GET","hear/"+songID.innerHTML+"/"+userID.innerHTML,true);
         xmlhttp.send();
         numberOfHear[songNo.innerHTML].innerHTML ++;
+        // var userID = <?php json_encode($uses); ?>
+        console.log(userID);
     });
     songArr.push([sourceLink[i].innerHTML, songIMG[i].innerHTML, songName[i].innerHTML]);
 }
 
-//Handle first time load song'data
+//Handle first time load song'dataf
 window.onload = function(){
     const imgContainer = document.getElementById("left-container-img");
     const nameContainer = document.getElementById("left-container-name");

@@ -6,11 +6,28 @@ use Illuminate\Http\Request;
 // use DB;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class queryController extends Controller
 {
-    public function myMysic(){
-        return view("my_music");
+    public function myMusic(){
+        $songs = DB::table('user-song')
+        ->join('song','song.songID','user-song.songID')
+        ->orderBy('accessAt','desc')
+        ->select()->take(4)->get();
+        $songArtists = DB::table('song')
+        ->join('song-artist','song.songID','song-artist.songID')
+        ->join('artist','artist.artistID','song-artist.artistID')
+        ->select()->get();
+        $songTrends = DB::table('song')
+        ->join('genre','song.genresID','genre.genreID')
+        ->orderBy('createAt','desc')
+        ->orderBy('numberOfHear','desc')
+        ->select()->take(5)->get();
+        $userID = Auth::id();
+        $user = $this->authUser();
+        return view("my_music")
+            ->with(['user'=>$user, 'songs'=>$songs, 'songArtists'=>$songArtists, 'songTrends'=>$songTrends]);
     }
     public function trending(){
         $songs = DB::table('song')
@@ -22,7 +39,9 @@ class queryController extends Controller
         ->join('song-artist','song.songID','song-artist.songID')
         ->join('artist','artist.artistID','song-artist.artistID')
         ->select()->get();
-        return view("trending")->with(['songs'=>$songs, 'songArtists'=>$songArtists]);
+        $user = $this->authUser();
+        return view("trending")
+            ->with(['songs'=>$songs, 'songArtists'=>$songArtists, 'user'=>$user]);
     }
     public function musicNew(){
         $songs = DB::table('song')
@@ -33,7 +52,6 @@ class queryController extends Controller
         ->join('song-artist','song.songID','song-artist.songID')
         ->join('artist','artist.artistID','song-artist.artistID')
         ->select()->get();
-
         // Get different time
         $date1 = carbon::now();
         foreach ($songs as $song){
@@ -51,9 +69,10 @@ class queryController extends Controller
             }
             $song->diffTime = $kq;
         }
-        
+        $userID = Auth::id();
+        $user = $this->authUser();
         return view("music_new")
-        ->with(['songs'=>$songs, 'songArtists'=>$songArtists]);
+        ->with(['songs'=>$songs, 'songArtists'=>$songArtists, 'user'=>$user]);
     }
     public function category(){
         $songs = DB::table('song')
@@ -66,8 +85,10 @@ class queryController extends Controller
         ->select()->get();
         $genres = DB::table('genre')
         ->select()->get();
+        $userID = Auth::id();
+        $user = $this->authUser();
         return view("category")
-        ->with(['songs'=>$songs, 'songArtists'=>$songArtists, 'genres'=>$genres]);
+        ->with(['songs'=>$songs, 'songArtists'=>$songArtists, 'genres'=>$genres, 'user'=>$user]);
     }
     public function musician(){
         $songs = DB::table('song')
@@ -81,15 +102,14 @@ class queryController extends Controller
         ->orderByRaw('SUM(numberOfLike) desc')
         ->select()->limit(7)->get();
         $test = DB::table('song')->sum('numberOfLike');
-
         $songArtists = DB::table('song')
         ->join('song-artist','song.songID','song-artist.songID')
         ->join('artist','artist.artistID','song-artist.artistID')
         ->orderBy('numberOfLike','desc')
         ->select()->get();
-        
+        $user = $this->authUser();
         return view("top_musician")
-        ->with(['songs'=>$songs, 'songArtists'=>$songArtists, 'artistLists'=>$artistLists, 'test'=>$test]);
+        ->with(['songs'=>$songs, 'songArtists'=>$songArtists, 'artistLists'=>$artistLists, 'user'=>$user, 'test'=>$test]);
     }
     public function search(Request $request){
         $key = $request -> get('name');
@@ -112,8 +132,10 @@ class queryController extends Controller
             ->where('songID', $song->songID)
             ->update(['numberOfSearch'=>$searchNum]);
         }
+
+        $user = $this->authUser();
         return view("music_search")
-        ->with(['songs'=>$songs, 'songArtists'=>$songArtists, 'result'=>$result]);
+        ->with(['songs'=>$songs, 'songArtists'=>$songArtists, 'result'=>$result, 'user'=>$user]);
     }
     
     public function topSearch(){
@@ -125,18 +147,78 @@ class queryController extends Controller
         ->join('song-artist','song.songID','song-artist.songID')
         ->join('artist','artist.artistID','song-artist.artistID')
         ->select()->get();
+        $user = $this->authUser();
         return view("music_top_search")
-        ->with(['songs'=>$songs, 'songArtists'=>$songArtists]);
+        ->with(['songs'=>$songs, 'songArtists'=>$songArtists, 'user'=>$user]);
 
     }
     
     public function chart(){
-        return view("chart_hight");
+        $songs = DB::table('song')
+        ->join('genre','song.genresID','genre.genreID')
+        ->orderBy('createAt','desc')
+        ->orderBy('numberOfHear','desc')
+        ->select()->take(8)->get();
+        $songArtists = DB::table('song')
+        ->join('song-artist','song.songID','song-artist.songID')
+        ->join('artist','artist.artistID','song-artist.artistID')
+        ->select()->get();
+        $user = $this->authUser();
+        return view("chart_hight")
+            ->with(['songs'=>$songs, 'songArtists'=>$songArtists, 'user'=>$user]);
     }
     
-    public function detail(){
-        return view("detail_music");
+    public function detail($id){
+        $songs = DB::table('song')
+        ->where('song.songID', $id)
+        ->join('genre','song.genresID','genre.genreID')
+        ->join('author','song.authorID','author.authorID')
+        ->select()->get()->first();
+        $songArtists = DB::table('song')
+        ->join('song-artist','song.songID','song-artist.songID')
+        ->join('artist','artist.artistID','song-artist.artistID')
+        ->select()->get();
+        $cmts = DB::table('reviewsong')
+        ->where('reviewsong.songID',$id)
+        ->join('users','users.id','reviewsong.userID')
+        ->orderBy('cmtAt', 'desc')
+        ->select()->get();
+        // handle display time
+        Carbon::setLocale('vi'); // hiển thị ngôn ngữ tiếng việt.
+        $now = Carbon::now();
+        foreach ($cmts as $cmt){
+            $dt = Carbon::parse($cmt->cmtAt);
+            $diff = $dt->diffForHumans($now); //12 phút trước
+            $cmt->cmtAt = $diff;
+        }
+        $user = $this->authUser();
+        return view("detail_music")
+        ->with(['song_ID'=>$id, 'user'=>$user, 'song'=>$songs, 'songArtists'=>$songArtists,'cmts'=>$cmts]);
     }
+    public function addCmt(Request $request){
+        $songID = $request->input('songID');
+        $userID = $request->input('userID');
+        $cmt = $request->input('cmtContent');
+        DB::table('reviewsong')
+        ->insert(['reviewContent'=>$cmt, 'songID'=>$songID, 'userID'=>$userID, "cmtAt"=> Carbon::now()]);
+        return $this->detail($songID);
+    }
+    public function feedback(Request $request){
+        $url = $request->input('txtURL');
+        $userID = $request->input('txtUserID');
+        $feedback = $request->input('feedback');
+        DB::table('feedback')
+        ->insert(['fbContent'=>$feedback, 'userID'=>$userID, 'fbContent'=>$feedback]);
+        return redirect($url);
+    }
+    public function authUser() {
+        $userID = Auth::id();
+        $user = DB::table('users')
+            ->where('id', $userID)
+            ->get()->first();
+        return $user; 
+    }
+    
 
     //Handle Ajax
     public function changeLike($id, $number){
@@ -144,7 +226,7 @@ class queryController extends Controller
             ->where('songID', $id)
             ->update(['numberOfLike'=>$number]);
     }
-    public function changeHear($id){
+    public function changeHear($id, $userID){
         $songs = DB::table('song')
         ->where('songID', $id)
         ->select('numberOfHear')->get();
@@ -153,13 +235,11 @@ class queryController extends Controller
             ->where('songID', $id)
             ->update(['numberOfHear'=>$song->numberOfHear+1]);
         }
+        if ($userID > 0) {
+            DB::table('user-song')
+            ->insert(['songID'=>$id, 'userID'=>$userID, "accessAt"=> Carbon::now()]);
+        } 
     }
-
-    public function login(){
-        return view("login");
-    }
-
-    public function register(){
-        return view("register");
-    }
+    
+    
 }
