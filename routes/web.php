@@ -40,3 +40,22 @@ Route::get('/logout', [authController::class,'logout']);
 Route::get('/register', [authController::class,'register']);
 Route::post('/login-request', [authController::class,'validateUser']);
 Route::post('/register-request', [authController::class,'registerUser']);
+
+//admin route
+// cate
+Route::get('/admin/add-cate', function(){
+    return view('addcate');
+});
+Route::get('/admin/list-cate', [AdminController::class,'listcate']);
+Route::get('/delete-cate/{id}.html', [AdminController::class,'deletecate']);
+Route::get('/edit-cate/{id}.html', [AdminController::class,'editshowcate']);
+Route::post('/admin/addcatepost', [AdminController::class,'addcate']);
+Route::post('/edit-cate/editcatepost-{id}', [AdminController::class,'editcate']);
+
+//song
+Route::get('/admin/add-song', [AdminController::class,'listcateproduct']);
+Route::post('/admin/addsongpost', [AdminController::class,'addproduct']);
+Route::get('/admin/list-song', [AdminController::class,'listproduct']);
+Route::get('/delete-pro/{id}.html', [AdminController::class,'deleteproduct']);
+Route::get('/edit-pro/{id}.html', [AdminController::class,'editshowproduct']);
+Route::post('/edit-pro/editproductpost-{id}', [AdminController::class,'editproduct']);
