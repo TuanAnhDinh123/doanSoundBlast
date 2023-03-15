@@ -1,4 +1,4 @@
-@extends('layouts/adminlayout')
+@extends('layouts/admin')
 @extends('layouts/adminlayout')
 @section('adminMain')
 

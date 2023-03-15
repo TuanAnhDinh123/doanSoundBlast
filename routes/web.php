@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\queryController;
 use App\Http\Controllers\authController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,20 +43,45 @@ Route::post('/login-request', [authController::class,'validateUser']);
 Route::post('/register-request', [authController::class,'registerUser']);
 
 //admin route
+Route::get('/admin', function () {
+    return redirect()->route('listSong');
+});
 // cate
 Route::get('/admin/add-cate', function(){
-    return view('addcate');
+    return view('v_admin.add_cate');
 });
 Route::get('/admin/list-cate', [AdminController::class,'listcate']);
-Route::get('/delete-cate/{id}.html', [AdminController::class,'deletecate']);
-Route::get('/edit-cate/{id}.html', [AdminController::class,'editshowcate']);
+Route::get('/admin/delete-cate/{id}.html', [AdminController::class,'deletecate']);
+Route::get('/admin/edit-cate/{id}.html', [AdminController::class,'editshowcate']);
 Route::post('/admin/addcatepost', [AdminController::class,'addcate']);
-Route::post('/edit-cate/editcatepost-{id}', [AdminController::class,'editcate']);
+Route::post('/admin/edit-cate/editcatepost', [AdminController::class,'editcate']);
+
+// Artist
+Route::get('/admin/add-artist', function(){
+    return view('v_admin.add_artist');
+});
+Route::get('/admin/list-artist', [AdminController::class,'listArtist']);
+Route::get('/admin/delete-artist/{id}.html', [AdminController::class,'deleteArtist']);
+Route::get('/admin/edit-artist/{id}.html', [AdminController::class,'editShowArtist']);
+Route::post('/admin/add-artist-post', [AdminController::class,'addArtist']);
+Route::post('/admin/edit-artist/edit-artist-post', [AdminController::class,'editArtist']);
+
+// Author
+Route::get('/admin/add-author', function(){
+    return view('v_admin.add_author');
+});
+Route::get('/admin/list-author', [AdminController::class,'listAuthor']);
+Route::get('/admin/delete-author/{id}.html', [AdminController::class,'deleteAuthor']);
+Route::get('/admin/edit-author/{id}.html', [AdminController::class,'editShowAuthor']);
+Route::post('/admin/add-author-post', [AdminController::class,'addAuthor']);
+Route::post('/admin/edit-author/edit-author-post', [AdminController::class,'editAuthor']);
 
 //song
-Route::get('/admin/add-song', [AdminController::class,'listcateproduct']);
-Route::post('/admin/addsongpost', [AdminController::class,'addproduct']);
-Route::get('/admin/list-song', [AdminController::class,'listproduct']);
-Route::get('/delete-pro/{id}.html', [AdminController::class,'deleteproduct']);
-Route::get('/edit-pro/{id}.html', [AdminController::class,'editshowproduct']);
-Route::post('/edit-pro/editproductpost-{id}', [AdminController::class,'editproduct']);
+Route::get('/admin/add-song', function(){
+    return view('v_admin.add_song');
+});
+Route::get('/admin/list-song', [AdminController::class,'listSong'])->name('listSong');
+Route::get('/admin/delete-song/{id}.html', [AdminController::class,'deleteSong']);
+Route::get('/admin/edit-song/{id}.html', [AdminController::class,'editshowSong']);
+Route::post('/admin/addsongpost', [AdminController::class,'addSong']);
+Route::post('/admin/edit-song/edit-song-post', [AdminController::class,'editSong']);

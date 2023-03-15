@@ -1,4 +1,4 @@
-@extends('layouts/adminlayout')
+@extends('layouts/admin')
 @section('adminMain')
 <div class="row">
     <div class="col-10 mx-auto mt-5">

@@ -9,36 +9,95 @@ class AdminController extends Controller
 {
     public function addcate(Request $request){
         $ten = $request->post('categoryName');
-        $mota = $request->post('cateDes');
-        $kq = DB::table('loai_san_pham')->insert(['tenLoai'=>$ten,'moTa'=>$mota]);
-        return view('addcate') ->with(['kq'=>$kq]);
+        $kq = DB::table('genre')->insert(['genreName'=>$ten]);
+        return $this->listcate();
     }
     public function listcate(){
-        $kq = DB::table('loai_san_pham')->select()->get();
-        return view('listcate') ->with(['kq'=>$kq]);
+        $listCates = DB::table('genre')->select()->get();
+        return view('v_admin.list_cate') ->with(['listCates'=>$listCates]);
     }
     public function deletecate($id){
-        DB::table('loai_san_pham')->where('maLoai','=',$id)->delete();
+        DB::table('genre')->where('genreID','=',$id)->delete();
         return $this->listcate();
     }
     public function editshowcate($id){
-        $kq = DB::table('loai_san_pham')->select()->where('maLoai','=',$id)->get();
-        $id = $kq->value('maLoai');
-        $ten = $kq->value('tenLoai');
-        $mota = $kq->value('moTa');
-        return view('editcate') ->with(['id'=>$id, 'ten'=>$ten, 'mota'=>$mota]);
+        $kq = DB::table('genre')->select()->where('genreID','=',$id)->get();
+        $id = $kq->value('genreID');
+        $ten = $kq->value('genreName');
+        return view('v_admin.edit_cate') ->with(['id'=>$id, 'ten'=>$ten]);
     }
-    public function editcate(Request $request, $id){
+    public function editcate(Request $request){
         $ten = $request->post('categoryName');
-        $mota = $request->post('cateDes');
-        $kq = DB::table('loai_san_pham')->where('maLoai',$id)->update(['tenLoai'=>$ten,'moTa'=>$mota]);
+        $id = $request->post('categoryID');
+        $kq = DB::table('genre')->where('genreID',$id)->update(['genreName'=>$ten]);
         return $this->listcate();
     }
 
-    //product handle
-    public function listcateproduct(){
-        $kq = DB::table('loai_san_pham')->select()->get();
-        return view('addproduct') ->with(['kq'=>$kq]);
+    // Artist Handle
+    public function addArtist(Request $request){
+        $ten = $request->post('artistName');
+        $kq = DB::table('artist')->insert(['artistName'=>$ten]);
+        return $this->listArtist();
+    }
+    public function listArtist(){
+        $listArtists = DB::table('artist')->select()->get();
+        return view('v_admin.list_artist') ->with(['listArtists'=>$listArtists]);
+    }
+    public function deleteartist($id){
+        DB::table('artist')->where('artistID','=',$id)->delete();
+        return $this->listArtist();
+    }
+    public function editShowartist($id){
+        $kq = DB::table('artist')->select()->where('artistID','=',$id)->get();
+        $id = $kq->value('artistID');
+        $ten = $kq->value('artistName');
+        return view('v_admin.edit_artist') ->with(['id'=>$id, 'ten'=>$ten]);
+    }
+    public function editArtist(Request $request){
+        $ten = $request->post('artistName');
+        $id = $request->post('artistID');
+        $kq = DB::table('artist')->where('artistID',$id)->update(['artistName'=>$ten]);
+        return $this->listArtist();
+    }
+
+    // Author Handle
+    public function addAuthor(Request $request){
+        $ten = $request->post('authorName');
+        $kq = DB::table('author')->insert(['authorName'=>$ten]);
+        return $this->listAuthor();
+    }
+    public function listAuthor(){
+        $listAuthors = DB::table('author')->select()->get();
+        return view('v_admin.list_author') ->with(['listAuthors'=>$listAuthors]);
+    }
+    public function deleteAuthor($id){
+        DB::table('author')->where('authorID','=',$id)->delete();
+        return $this->listAuthor();
+    }
+    public function editShowAuthor($id){
+        $kq = DB::table('author')->select()->where('authorID','=',$id)->get();
+        $id = $kq->value('authorID');
+        $ten = $kq->value('authorName');
+        return view('v_admin.edit_author') ->with(['id'=>$id, 'ten'=>$ten]);
+    }
+    public function editAuthor(Request $request){
+        $ten = $request->post('authorName');
+        $id = $request->post('authorID');
+        $kq = DB::table('author')->where('authorID',$id)->update(['authorName'=>$ten]);
+        return $this->listAuthor();
+    }
+
+    // Song handle
+    public function listSong(){
+        $songs = DB::table('song')
+        ->join('genre','song.genresID','genre.genreID')
+        ->join('author','song.authorID','author.authorID')
+        ->select()->get();
+        $songArtists = DB::table('song')
+        ->join('song-artist','song.songID','song-artist.songID')
+        ->join('artist','artist.artistID','song-artist.artistID')
+        ->select()->get();
+        return view('v_admin.list_song') ->with(['songs'=>$songs, 'artists'=>$songArtists]);
     }
     public function addproduct(Request $request){
         //Store file

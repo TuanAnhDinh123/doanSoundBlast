@@ -1,4 +1,4 @@
-@extends('layouts/adminlayout')
+@extends('layouts/admin')
 @section('adminMain')
 <div class="row">
     <div class="col-10 mx-auto mt-5">
@@ -8,9 +8,7 @@
             <div class="form-group">
                 <label for="">Tên thể loại</label>
                 <select name="" id="" class="form-control">
-                    @foreach()
-                       
-                    @endforeach
+                    
                 </select>
             </div>
             <div class="form-group">
@@ -24,7 +22,7 @@
                 </div>
                 <div class="form-group mt-3 col-6">
                     <label for="">Ngày phát hành</label>
-                    <input type="date" name="" required value="{{$date}}" class="form-control">
+                    <input type="date" name="" required value="" class="form-control">
                 </div>
             </div>
             <div class="row">
