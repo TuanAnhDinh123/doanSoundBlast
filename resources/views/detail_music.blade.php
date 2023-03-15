@@ -46,7 +46,7 @@
     </div>
     <div class="col-6">
         <div class="container">
-            <div class="comment mb-3">
+            <div class="comment mb-3" id="containerCmt">
                 <div class="d-flex justify-content-center row comment-border">
                     <div class="">
                         <div class="progress-bar" id="myBar"></div>

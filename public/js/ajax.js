@@ -37,6 +37,27 @@ for (i=0; i<likeContainer.length; i++) {
         xmlhttp.send();//thuoc tinh readystate bat dau thay doi tu 0 thoi 4=>su kien onreadystatechange se thay doi
     })
 }
+//Handle Sidebar Tag
+var UrlArr = [
+    'http://localhost:8000/ca-nhan',
+    'http://localhost:8000/trending',
+    'http://localhost:8000/chart',
+    'http://localhost:8000/nhac-moi',
+    'http://localhost:8000/the-loai',
+    'http://localhost:8000/top-nghe-si',
+    'http://localhost:8000/top-search'    
+]
+var pageURL = window.location.href;
+var sidebarTag = document.getElementsByClassName("sidebar-tag");
+for (i=0; i<sidebarTag.length; i++) {
+    console.log(sidebarTag[i]);
+    if (pageURL == UrlArr[i]){
+        console.log(i)
+        sidebarTag[i].classList.add("sidebar-tag-active");
+    }
+}
+
+
 //Handle Tooltip
     $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();   
