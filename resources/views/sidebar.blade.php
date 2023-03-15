@@ -2,7 +2,7 @@
     <div class="row text-center">
         {{-- <p class="navbar-brand logo" style="font-size:24px" href="#">Sound Blast</p> --}}
         <a href="/" class="navbar-brand logo ">
-            <img src="{{asset('logo.png')}}" alt=""  height="120px" width="220px" type="button" ></a>
+            <img src="{{asset('logo.png')}}" alt=""  height="120px" width="200px" type="button" ></a>
     </div>
     <nav class="mt-2">
         <ul class="nav nav-sidebar flex-column " >

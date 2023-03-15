@@ -84,7 +84,7 @@
                                     <li class="dropdown-item"><a class="nav-link active" type="button" data-bs-toggle="modal"   href="#" >Giới thiệu</a></li>
                                     <li class="dropdown-item"><a class="nav-link active"  href="#" >Liên Hệ</a></li>
                                     @if (!empty($user))    
-                                        <li class="dropdown-item"><a class="nav-link active" type="button" data-bs-toggle="modal" data-bs-target="#myModal">Send Feedback</a></li>
+                                        <li class="dropdown-item"><a class="nav-link active" type="button" data-toggle="modal" data-bs-target="#myModal">Send Feedback</a></li>
                                     @else
                                         <li class="dropdown-item"><a class="nav-link active" type="button" data-toggle="tooltip" title="Đăng nhập để gửi feedback">Send Feedback</a></li>
                                     @endif
