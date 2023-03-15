@@ -50,8 +50,9 @@ var UrlArr = [
 var pageURL = window.location.href;
 var sidebarTag = document.getElementsByClassName("sidebar-tag");
 for (i=0; i<sidebarTag.length; i++) {
-    console.log(UrlArr[i]);
+    console.log(sidebarTag[i]);
     if (pageURL == UrlArr[i]){
+        console.log(i)
         sidebarTag[i].classList.add("sidebar-tag-active");
     }
 }
