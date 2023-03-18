@@ -197,7 +197,7 @@ for (var i=0; i<playBtns.length; i++){
     songArr.push([sourceLink[i].innerHTML, songIMG[i].innerHTML, songName[i].innerHTML]);
 }
 
-//Handle first time load song'dataf
+//Handle first time load song data
 window.onload = function(){
     const imgContainer = document.getElementById("left-container-img");
     const nameContainer = document.getElementById("left-container-name");

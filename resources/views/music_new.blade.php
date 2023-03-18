@@ -1,5 +1,6 @@
 @extends('layouts/index')
 @section('content')
+@php $songNo=0; @endphp
 <h2 class="mb-3 title">Nhạc mới</h2>
 @foreach ($songs as $index=>$song)
 <div class="row mb-2 music"
@@ -69,6 +70,8 @@
         </div>
         {{-- play --}}
         <div class="col-2 playBtn row" type="button">
+            <p class="songID d-none">{{$song->songID}}</p>
+            <p class="songNo d-none">{{$songNo}}</p>
             <p class="songIndex d-none">{{$index}}</p>
             <p class="songPath d-none">{{asset('uploads/music/'.$song->mp3)}}</p>
             <p class="songImg d-none">{{asset('uploads/images/song/'.$song->img)}}</p>
@@ -81,13 +84,25 @@
                 </p>
         </div>
         {{-- download --}}
-        <div class="col" type="button" style="position:absolute; left:310px; bottom:10px">
+        @if (!empty($user))
+        <div class="col" type="button" style="position:absolute; left:310px; bottom:10px;width: fit-content;">
+            <a href="{{asset('uploads/music/'.$song->mp3)}}" download>
+                <svg color="white" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                    <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                </svg>
+            </a>    
+        </div>
+        @else
+        <div class="col" type="button" style="position:absolute; left:310px; bottom:10px;width: fit-content;" data-toggle="tooltip" title="Đăng nhập để download">
             <svg color="white" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
                 <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
                 <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
               </svg>
         </div>
+        @endif
     </div>
+    @php $songNo++; @endphp
 </div>
 @endforeach
 

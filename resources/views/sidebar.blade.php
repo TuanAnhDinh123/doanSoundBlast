@@ -1,4 +1,4 @@
-<div style="position: sticky;top: 0">
+<div style="position: sticky;top: 0;">
     <div class="row text-center">
         {{-- <p class="navbar-brand logo" style="font-size:24px" href="#">Sound Blast</p> --}}
         <a href="/" class="navbar-brand logo ">

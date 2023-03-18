@@ -29,7 +29,7 @@
                 </td>              
                 <td>{{$song->createAt}}</td>
                 <td><a href="{{url('admin/edit-song/'.$song->songID.'.html')}}"><i class='fa-solid fa-pen-to-square'></i></a></td>
-                <td><a href="{{url('admin/delete-song/'.$song->songName.'.html')}}"><i class='fa-solid fa-trash'></i></a></td>
+                <td><a href="{{url('admin/delete-song/'.$song->songID.'.html')}}"><i class='fa-solid fa-trash'></i></a></td>
             </tr>
             @endforeach
     </table>

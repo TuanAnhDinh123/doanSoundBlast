@@ -1,35 +1,41 @@
 @extends('layouts/index')
 @section('content')
-<div class="row">
+<div class="row" style="margin-top: -10px;">
     <div class="col-6">
         <div class="row">
-            <div class="card" style="">
-                <img src="{{asset('uploads/images/song/'.$song->img)}}" class="card-img-top" alt="...">
+            <div class="card p-0 col-10 mx-auto" style="">
+                <img src="{{asset('uploads/images/song/'.$song->img)}}" class="card-img-top" alt="..." style="height: 150%;">
             </div>
-            <div class="info">
-                <div class="row d-flex">
-                    <h5 class="title mt-3 mb-3">{{$song->songName}}</h5>
-                    <div class="col-6">                       
-                        <h4 class="title mt-3 mb-3">Ca sĩ: </h4>
-                        <div class="lyrics">
+            <div class="info col-10 mx-auto">
+                <div class="">
+                    <h2 class="title mt-3 mb-3 text-center" style="font-size: 30px;">{{$song->songName}}</h2>
+                    <div class="d-flex row">                       
+                        <h5 class="title mt-2 mb-2" style="width: fit-content;font-size: 20px;">Ca sĩ: </h5>
+                        <div class="lyrics d-flex" style="width: fit-content;">
+                            @php $x=0; @endphp
                             @foreach ($songArtists as $index1=>$artist)
                             @if ($artist->songID == $song->songID)
-                            <p class="sub-string" style="color:#ffffff">{{$artist->artistName}}</p>
+                                @if ($x == 1)
+                                <span style="color:#ffffff;line-height:46px;">, </span>
+                                @endif
+                            <div class="sub-string" style="color:#ffffff; margin-left: 10px; line-height:46px;">{{$artist->artistName}}</div>
+                            @php $x++; @endphp
                             @endif
                             @endforeach
                         </div>
                     </div>
-                    <div class="col-6 row d-flex">                     
-                        <h4 class="title mt-3 mb-3">Sáng tác: </h4>
-                        <p style="color:#ffffff">{{$song->authorName}}</p>
+                    <div class="d-flex row">                     
+                        <h5 class="title mt-2 mb-2" style="width: fit-content;font-size: 20px;">Sáng tác: </h5>
+                        <div style="color:#ffffff;line-height:46px;width: fit-content;">{{$song->authorName}}</div>
                     </div>
                 </div>
-                               
-                <h4 class="title mt-3 mb-3">Thể loại: </h4>
-                <p style="color:#ffffff">{{$song->genreName}}</p>
-                <p style="color:#ffffff">{{$song->numberOfLike}} lượt thích</p>
-                <p style="color:#ffffff">{{$song->numberOfHear}} lượt nghe</p>
-                <p style="color:#ffffff">Xuất bản {{$song->createAt}}</p>
+                <hr class="my-3 w-75 mx-auto" style="color:#ffffff">    
+                <div class="row">
+                    <p class='col-10 text-center mx-auto' style="color:#ffffff">{{$song->genreName}}<span style="margin: 10px;">***</span>{{$song->createAt}}</p>
+                </div>
+                <div class="row">
+                    <p class='col-10 text-center mx-auto' style="color:#ffffff">{{$song->numberOfLike}} lượt thích <span style="margin: 10px;">***</span>{{$song->numberOfHear}} lượt nghe</p>
+                </div>
             </div>
         </div>
         <div class="play playBtn d-none" type="button">
@@ -53,9 +59,11 @@
                         @foreach($cmts as $cmt)
                         <div class="d-flex flex-column comment-section">
                             <div class="bg-white p-2">
-                                <div class="d-flex flex-row user-info"><img class="rounded-circle"
-                                        src="{{asset('/uploads/images/avatar/'.$cmt->img)}}" width="40" height="40">
-                                    <div class="d-flex flex-column justify-content-start ml-2 m-2 "><span
+                                <div class="d-flex flex-row user-info">
+                                    <div>
+                                        <img class="rounded-circle" src="{{asset('/uploads/images/avatar/'.$cmt->img)}}" width="40" height="40" style="margin-top: 4px;">
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-start ml-2" style="margin-left: 10px;"><span
                                             class="d-block font-weight-bold name fw-bold">{{$cmt->name}}</span>
                                             <span class="date text-black-50">
                                             {{$cmt->cmtAt}}</span>

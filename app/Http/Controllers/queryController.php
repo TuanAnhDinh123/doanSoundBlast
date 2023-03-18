@@ -11,10 +11,14 @@ use Illuminate\Support\Facades\Auth;
 class queryController extends Controller
 {
     public function myMusic(){
+        $userID = Auth::id();
+        $user = $this->authUser();
         $songs = DB::table('user-song')
+        ->where('userID', $userID)
         ->join('song','song.songID','user-song.songID')
         ->orderBy('accessAt','desc')
-        ->select()->take(4)->get();
+        ->select()->take(4)
+        ->get();
         $songArtists = DB::table('song')
         ->join('song-artist','song.songID','song-artist.songID')
         ->join('artist','artist.artistID','song-artist.artistID')
@@ -24,8 +28,7 @@ class queryController extends Controller
         ->orderBy('createAt','desc')
         ->orderBy('numberOfHear','desc')
         ->select()->take(5)->get();
-        $userID = Auth::id();
-        $user = $this->authUser();
+        
         return view("my_music")
             ->with(['user'=>$user, 'songs'=>$songs, 'songArtists'=>$songArtists, 'songTrends'=>$songTrends]);
     }
@@ -227,18 +230,18 @@ class queryController extends Controller
             ->update(['numberOfLike'=>$number]);
     }
     public function changeHear($id, $userID){
-        $songs = DB::table('song')
+        $song = DB::table('song')
         ->where('songID', $id)
-        ->select('numberOfHear')->get();
-        foreach ($songs as $song){
+        ->select('numberOfHear')->get()->first();
         DB::table('song')
-            ->where('songID', $id)
-            ->update(['numberOfHear'=>$song->numberOfHear+1]);
-        }
+        ->where('songID', $id)
+        ->update(['numberOfHear'=>$song->numberOfHear+1]);
         if ($userID > 0) {
-            DB::table('user-song')
+            echo $userID;
+            $kq = DB::table('user-song')
             ->insert(['songID'=>$id, 'userID'=>$userID, "accessAt"=> Carbon::now()]);
         } 
+        
     }
     
     

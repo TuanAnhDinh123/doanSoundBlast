@@ -37,7 +37,7 @@
 <body>
     <div class="container-fluid">
         <div class="row" style="min-height:745px">
-            <div class=" col-2" style="background:#3b1761">
+            <div class="col-2" style="background:#3b1761">
                 @include('sidebar')
             </div>
             <div class="col-10" style="background:#320c59">
@@ -81,10 +81,10 @@
                             </svg>                           
                             </button>
                                 <ul class="dropdown-menu mt-2" style="background:#6633CC" >
-                                    <li class="dropdown-item"><a class="nav-link active" type="button" data-bs-toggle="modal"   href="#" >Giới thiệu</a></li>
-                                    <li class="dropdown-item"><a class="nav-link active"  href="#" >Liên Hệ</a></li>
+                                    <li class="dropdown-item"><a class="nav-link active" type="button" data-bs-toggle="modal"  data-bs-target="#InfoModal" >Giới thiệu</a></li>
+                                    <li class="dropdown-item"><a class="nav-link active"  type="button" data-bs-toggle="modal"  data-bs-target="#contactModal"  >Liên Hệ</a></li>
                                     @if (!empty($user))    
-                                        <li class="dropdown-item"><a class="nav-link active" type="button" data-toggle="modal" data-bs-target="#myModal">Send Feedback</a></li>
+                                        <li class="dropdown-item"><a class="nav-link active" type="button" data-bs-toggle="modal" data-bs-target="#feedbackModal">Send Feedback</a></li>
                                     @else
                                         <li class="dropdown-item"><a class="nav-link active" type="button" data-toggle="tooltip" title="Đăng nhập để gửi feedback">Send Feedback</a></li>
                                     @endif
@@ -92,40 +92,114 @@
                             </div>
                             
                             <!-- The Modal -->
-                            <div class="modal" id="myModal">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Gửi feedback cho chúng tôi</h4>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                </div>
-
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                                <form action="feedback-request" class="bg-light p-3 my-3" style="align-items:center" method="post">
-                                {{csrf_field() }}
-                                @if (!empty($user))    
-                                    <input type="text" name="txtURL" class="d-none" value="{{url()->current()}}">
-                                    <input type="text" name="txtUserID" class="d-none" value="{{$user->id}}">
-                                    <div class="form-group">
-                                        <textarea name="feedback" id="" cols="50" rows="5" class="form-control border border-dark"></textarea>
-                                    </div>                    
-                                    <div class="form-group py-3 ">
-                                        <input type="submit" value="Gửi" class="btn btn-primary mb-2 ">
+                            <div class="modal" id="feedbackModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Gửi feedback cho chúng tôi</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                     </div>
-                                @endif
-                                </form>
-                                </div>
-
-                                <!-- Modal footer
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                </div> -->
-
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                    <form action="feedback-request" class="bg-light p-3 my-3" style="align-items:center" method="post">
+                                    {{csrf_field() }}
+                                    @if (!empty($user))    
+                                        <input type="text" name="txtURL" class="d-none" value="{{url()->current()}}">
+                                        <input type="text" name="txtUserID" class="d-none" value="{{$user->id}}">
+                                        <div class="form-group">
+                                            <textarea name="feedback" id="" cols="50" rows="5" class="form-control border border-dark"></textarea>
+                                        </div>                    
+                                        <div class="form-group py-3 ">
+                                            <input type="submit" value="Gửi" class="btn btn-primary mb-2 ">
+                                        </div>
+                                    @endif
+                                    </form>
+                                    </div>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="modal" id="InfoModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">SoundBlast</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        <p>Project Sem1 Lớp C2206L</p>
+                                        <p>Đề tài: Trang web nghe nhạc SoundBlast</p>
+                                        <p>Trang web với nhiều tính năng hữu ích giúp người nghe có trải nghiệm âm nhạc tuyệt với nhất.
+                                            Bao gồm các tính năng sắp xếp nhạc theo trend, ngày phát hành, ca sỹ nổi tiếng, bài hát được search nhiều nhất, thể loại...
+                                            hoặc search bài hát theo sở thích cá nhân.
+                                        Trang web còn cho phép người dùng đăng ký tài khoản để có thể có được trải nghiệm tối ưu nhất như lưu lại những bài hát
+                                        đã nghe gần đây, download, like và để lại bình luận cho mỗi bài hát mình yêu thích.</p>
+                                        <p class="fst-italic text-end">---Hãy trải nghiệm và cảm nhận---</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary col-3" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal" id="contactModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Đề tài được thực hiện bởi: Nhóm 4</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        <div class="mt-2">
+                                            <p class="fw-bold m-0 mx-1">Đinh Tuấn Anh</p>
+                                            <p class="m-0 mx-3">Sdt: 0369880745</p>
+                                            <p class="m-0 mx-3">Email: tuananhdinh0711@gmail.com</p>
+                                        </div>
+                                        <div class="mt-2">
+                                            <p class="fw-bold m-0 mx-1">Phạm Năng Khánh Nhật</p>
+                                            <p class="m-0 mx-3">Sdt: 0909392250</p>
+                                            <p class="m-0 mx-3">Email: khanhnhat2995@gmail.com</p>
+                                        </div>
+                                        <div class="mt-2">
+                                            <p class="fw-bold m-0 mx-1">Trần Ngọc Long</p>
+                                            <p class="m-0 mx-3">Sdt: 0705224404</p>
+                                            <p class="m-0 mx-3">Email: 0705224404Ngoclong9988@gmail.com</p>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary col-3" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal" id="InfoModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">SoundBlast</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        <p>Project Sem1 Lớp C2206L</p>
+                                        <p>Đề tài: Trang web nghe nhạc SoundBlast</p>
+                                        <p>Trang web với nhiều tính năng hữu ích giúp người nghe có trải nghiệm âm nhạc tuyệt với nhất.
+                                            Bao gồm các tính năng sắp xếp nhạc theo trend, ngày phát hành, ca sỹ nổi tiếng, bài hát được search nhiều nhất, thể loại...
+                                            hoặc search bài hát theo sở thích cá nhân.
+                                        Trang web còn cho phép người dùng đăng ký tài khoản để có thể có được trải nghiệm tối ưu nhất như lưu lại những bài hát
+                                        đã nghe gần đây, download, like và để lại bình luận cho mỗi bài hát mình yêu thích.</p>
+                                        <p class="fst-italic text-end">---Hãy trải nghiệm và cảm nhận---</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary col-3" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-4">
@@ -149,7 +223,7 @@
                     </div>
                     
                 </div>
-                <div class="container mt-5 mr-2" style="width:1000px">
+                <div class="container mt-4 mr-2" style="width:1000px">
                     @yield('content')
                 </div>
                 

@@ -141,10 +141,17 @@
 
 /* Sidebar Tag css */
 .sidebar-tag-active{
-    background-color: #9966CB;
+    background-color: rgb(102, 51, 204);
 }
 #containerCmt{
+    overflow-x: hidden;
     overflow-y: scroll;
-    max-height: 500px;
+    max-height: 400px;
+    /* max-width: 100%; */
+}
+#downloadBtn{
+    pointer-events: none;
+    cursor: default;
+    
 }
 

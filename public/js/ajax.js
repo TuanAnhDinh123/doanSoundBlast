@@ -59,6 +59,11 @@ for (i=0; i<sidebarTag.length; i++) {
 
 
 //Handle Tooltip
-    $(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();   
-    });
+    // $(document).ready(function(){
+    // $('[data-toggle="tooltip"]').tooltip();   
+    // });
+// Initialize tooltips
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})

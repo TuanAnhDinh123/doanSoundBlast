@@ -61,8 +61,8 @@
                         </a>
                     </ul>
                 </li>
-                <li class="list-group-item fw_bold text-center">BÀI HÁT
-                    <a href="" class=" text-decoration-none ">All feedback</a>
+                <li class="list-group-item fw_bold">
+                    <a href="" class=" text-decoration-none" style="color: #000000">FEEDBACK FROM USER</a>
                 </li>
             </ul>
         </div>

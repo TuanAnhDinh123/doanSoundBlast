@@ -92,6 +92,7 @@ class AdminController extends Controller
         $songs = DB::table('song')
         ->join('genre','song.genresID','genre.genreID')
         ->join('author','song.authorID','author.authorID')
+        ->orderBy('songID')
         ->select()->get();
         $songArtists = DB::table('song')
         ->join('song-artist','song.songID','song-artist.songID')
@@ -99,55 +100,105 @@ class AdminController extends Controller
         ->select()->get();
         return view('v_admin.list_song') ->with(['songs'=>$songs, 'artists'=>$songArtists]);
     }
-    public function addproduct(Request $request){
+    public function addSongSelectData(){
+        $genres = DB::table('genre')->select()->get();
+        $artists = DB::table('artist')->select()->get();
+        $authors = DB::table('author')->select()->get();
+        return view('v_admin.add_song') ->with(['genres'=>$genres, 'artists'=>$artists, 'authors'=>$authors]);
+    }
+    public function addSong(Request $request){
         //Store file
-        $image = $request->file('productPic');
-        $image->move('uploads/images',$image->getClientOriginalName());
-        //add data to database
-        $loai = $request->post('cateName');
-        $ten = $request->post('productName');
-        $gia = $request->post('productPrice');
+        $image = $request->file('txtImg');
+        $mp3 = $request->file('txtMp3');
+        $image->move('uploads/images/song',$image->getClientOriginalName());
+        $mp3->move('uploads/music',$mp3->getClientOriginalName());
+        //add song to song table
+        $theloai = $request->post('txtGenre');
+        // $casi = $request->getlist('txtArtist');
+        $casi['txtArtist'] = $request->txtArtist;
+        // dd($casi, $casi['txtArtist'][0]);
+        $nhacsi= $request->post('txtAuthor');
+        $ten = $request->post('txtName');
         $hinh = $image->getClientOriginalName();
-        $date = $request->post('productDate');
-        DB::table('san_pham')->insert(['tenSP'=>$ten,'donGia'=>$gia,'hinh'=>$hinh,'ngayTao'=>$date,'maLoai'=>$loai]);
-        return $this->listproduct();
+        $nhac = $image->getClientOriginalName();
+        $ngay = $request->post('txtDate');
+        DB::table('song')->insert(['songName'=>$ten,'img'=>$hinh,'mp3'=>$nhac,'authorID'=>$nhacsi,'genresID'=>$theloai,'createAt'=>$ngay]);
+        
+        // add artist to song-artist table
+        $songInfo = DB::table('song')
+        ->orderBy('songID', 'desc')->first();
+        for ($i=0;$i<2;$i++){
+            DB::table('song-artist')->insert(['songID'=>$songInfo->songID, 'artistID'=>$casi['txtArtist'][$i]]);
+        }
+        
+        return $this->listsong();
     }
-    public function listproduct(){
-        $kq = DB::table('san_pham')->join('loai_san_pham','san_pham.maLoai','loai_san_pham.maLoai')->get();
-        return view('listproduct') ->with(['kq'=>$kq]);
+    public function deleteSong($id){
+        DB::table('song')->where('songID','=',$id)->delete();
+        DB::table('song-artist')->where('songID','=',$id)->delete();
+        return $this->listsong();
     }
-    public function deleteproduct($id){
-        DB::table('san_pham')->where('maSp','=',$id)->delete();
-        return $this->listproduct();
+    public function editshowSong($id){
+        $song = DB::table('song')
+        ->join('genre','song.genresID','genre.genreID')
+        ->join('author','song.authorID','author.authorID')
+        ->where('song.songID', $id)
+        ->select()->get()->first();
+        $songArtists = DB::table('song')
+        ->join('song-artist','song.songID','song-artist.songID')
+        ->join('artist','artist.artistID','song-artist.artistID')
+        ->where('song.songID', $id)
+        ->select()->get();
+        $genreList = DB::table('genre')->select()->get();
+        $artistList = DB::table('artist')->select()->get();
+        $authorList = DB::table('author')->select()->get();
+        return view('v_admin.edit_song')
+        ->with(['genreList'=>$genreList, 'artistList'=>$artistList, 'authorList'=>$authorList, 'song'=>$song, 'songArtists'=>$songArtists]);
     }
-    public function editshowproduct($id){
-        $kq = DB::table('san_pham')->select()->where('maSp','=',$id)->get();
-        $loai = $kq->value('maLoai');
-        $ten = $kq->value('tenSP');
-        $gia = $kq->value('donGia');
-        $hinh = $kq->value('hinh');
-        $date = $kq->value('ngayTao');
-        $kq = DB::table('loai_san_pham')->select()->get();
-        return view('editproduct') ->with(['id'=>$id, 'loai'=>$loai, 'ten'=>$ten, 'gia'=>$gia, 'hinh'=>$hinh, 'date'=>$date,'kq'=>$kq]);
-    }
-    public function editproduct(Request $request, $id){
-         //Store file
-         if($request->file('productPic')!=null){
-             $image = $request->file('productPic');
-             $image->move('uploads/images',$image->getClientOriginalName());
-             $hinh = $image->getClientOriginalName();
-         }
-         //add data to database
-         $loai = $request->post('cateName');
-         $ten = $request->post('productName');
-         $gia = $request->post('productPrice');
-         $date = $request->post('productDate');
-         if(isset($hinh)){
-             DB::table('san_pham')->where('maSp',$id)->update(['tenSP'=>$ten,'donGia'=>$gia,'hinh'=>$hinh,'ngayTao'=>$date,'maLoai'=>$loai]);
-         }
-         else{
-            DB::table('san_pham')->where('maSp',$id)->update(['tenSP'=>$ten,'donGia'=>$gia,'ngayTao'=>$date,'maLoai'=>$loai]);
-         }
-         return $this->listproduct();
+    public function editSong(Request $request, $id){
+        
+        //add song to song table
+        $theloai = $request->post('txtGenre');
+        $casi['txtArtist'] = $request->txtArtist;
+        $nhacsi= $request->post('txtAuthor');
+        $ten = $request->post('txtName');
+        $ngay = $request->post('txtDate');
+        DB::table('song')
+        ->where('songID', $id)
+        ->update(['songName'=>$ten,'authorID'=>$nhacsi,'genresID'=>$theloai,'createAt'=>$ngay]);
+        //Store file
+        if($request->file('txtImg')!=null){
+            $image = $request->file('txtImg');
+            $image->move('uploads/images/song',$image->getClientOriginalName());
+            $hinh = $image->getClientOriginalName();
+            DB::table('song')
+            ->where('songID', $id)
+            ->update(['img'=>$hinh]);
+        }
+        if($request->file('txtMp3')!=null){
+            $mp3 = $request->file('txtMp3');
+            $mp3->move('uploads/music',$mp3->getClientOriginalName());
+            $nhac = $image->getClientOriginalName();
+            DB::table('song')
+            ->where('songID', $id)
+            ->update(['mp3'=>$nhac]);
+        }
+        // add artist to song-artist table
+        for ($i=0;$i<2;$i++){
+            if ($i == 0) {
+                DB::table('song-artist')
+                ->where('songID', $id)
+                ->take(1)
+                ->update(['artistID'=>$casi['txtArtist'][$i]]);
+            } else {
+                DB::table('song-artist')
+                ->orderBy('song-artistID', 'desc')
+                ->where('songID', $id)
+                ->take(1)
+                ->update(['artistID'=>$casi['txtArtist'][$i]]);
+            }
+        }
+        
+        return $this->listsong();
     }
 }

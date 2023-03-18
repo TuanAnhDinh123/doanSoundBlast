@@ -77,11 +77,9 @@ Route::post('/admin/add-author-post', [AdminController::class,'addAuthor']);
 Route::post('/admin/edit-author/edit-author-post', [AdminController::class,'editAuthor']);
 
 //song
-Route::get('/admin/add-song', function(){
-    return view('v_admin.add_song');
-});
+Route::get('/admin/add-song', [AdminController::class,'addSongSelectData']);
 Route::get('/admin/list-song', [AdminController::class,'listSong'])->name('listSong');
 Route::get('/admin/delete-song/{id}.html', [AdminController::class,'deleteSong']);
 Route::get('/admin/edit-song/{id}.html', [AdminController::class,'editshowSong']);
-Route::post('/admin/addsongpost', [AdminController::class,'addSong']);
-Route::post('/admin/edit-song/edit-song-post', [AdminController::class,'editSong']);
+Route::post('/admin/add-song-post', [AdminController::class,'addSong']);
+Route::post('/admin/edit-song/edit-song-post-{id}', [AdminController::class,'editSong']);

@@ -1,6 +1,6 @@
 @extends('layouts/index')
 @section('content')
-<div class="nhac-buon">
+<div class="nhac-buon" style="min-height: 100vh;">
 @php $songNo=0; @endphp
     @if ($result == 0)
     <h2 class="text-center  mb-3 title">Không có kết quả phù hợp</h2>
@@ -16,9 +16,14 @@
                         {{$song->songName}}
                     </a>
                     </h5>
+                    @php $x=0; @endphp
                     @foreach ($songArtists as $index1=>$artist)
                     @if ($artist->songID == $song->songID)
-                        <p class="card-text">{{$artist->artistName}}</p>
+                        @if ($x == 1)
+                            <p class="sub-string-link">, </p>
+                        @endif
+                        <p class="sub-string-link">{{$artist->artistName}}</p>
+                    @php $x++; @endphp
                     @endif
                     @endforeach
                     <div class="play playBtn" type="button">
@@ -72,6 +77,23 @@
                         </svg>
                     </p>              
                 </div>
+                @if (!empty($user))
+                <div class="col" type="button" style="position:absolute; left:20px; bottom:12px">
+                    <a href="{{asset('uploads/music/'.$song->mp3)}}" download>
+                        <svg color="black" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                        </svg>
+                    </a>
+                </div>
+                @else
+                <div class="col" type="button" style="position:absolute; left:20px; bottom:12px" data-toggle="tooltip" title="Đăng nhập để download">
+                        <svg color="black" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                        </svg>
+                </div>
+                @endif
             </div>
         </div>
         @php $songNo++; @endphp
@@ -79,6 +101,4 @@
     </div>
     @endif
 </div>
-
-
 @endsection
