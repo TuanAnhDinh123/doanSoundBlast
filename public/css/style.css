@@ -143,6 +143,9 @@
 .sidebar-tag-active{
     background-color: rgb(102, 51, 204);
 }
+.adminSidebarTag-active{
+    background-color: rgba(76, 78, 196, 0.5) !important;
+}
 #containerCmt{
     overflow-x: hidden;
     overflow-y: scroll;

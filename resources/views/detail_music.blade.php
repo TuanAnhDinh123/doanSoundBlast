@@ -34,7 +34,7 @@
                     <p class='col-10 text-center mx-auto' style="color:#ffffff">{{$song->genreName}}<span style="margin: 10px;">***</span>{{$song->createAt}}</p>
                 </div>
                 <div class="row">
-                    <p class='col-10 text-center mx-auto' style="color:#ffffff">{{$song->numberOfLike}} lượt thích <span style="margin: 10px;">***</span>{{$song->numberOfHear}} lượt nghe</p>
+                    <p class='col-10 text-center mx-auto' style="color:#ffffff">{{$song->numberOfLike}} lượt thích <span style="margin: 10px;">***</span>{{$song->numberOfHear}}K lượt nghe</p>
                 </div>
             </div>
         </div>

@@ -83,3 +83,5 @@ Route::get('/admin/delete-song/{id}.html', [AdminController::class,'deleteSong']
 Route::get('/admin/edit-song/{id}.html', [AdminController::class,'editshowSong']);
 Route::post('/admin/add-song-post', [AdminController::class,'addSong']);
 Route::post('/admin/edit-song/edit-song-post-{id}', [AdminController::class,'editSong']);
+// Feedback
+Route::get('/admin/feedback', [AdminController::class,'readFeedback']);

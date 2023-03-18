@@ -18,51 +18,51 @@
     <div class="container row mx-auto">
         <div class="col-3">
             <ul class="list-group">
-                <li class="list-group-item ">
+                <li class="list-group-item  pe-0">
                     <span class="fw_bold font-weight-bold">THỂ LOẠI</span>
                     <ul>
-                        <a href="{{url('admin/add-cate')}}" class=" text-decoration-none">
-                            <li class="list-group-item border-0">Thêm thể loại</li>
+                        <a href="{{url('admin/add-cate')}}" class="text-decoration-none">
+                            <li class="list-group-item border-0 adminSidebarTag">Thêm thể loại</li>
                         </a>
                         <a href="{{url('admin/list-cate')}}" class=" text-decoration-none">
-                            <li class="list-group-item border-0">Danh sách thể loại</li>
+                            <li class="list-group-item border-0 adminSidebarTag">Danh sách thể loại</li>
                         </a>
                     </ul>
                 
-                <li class="list-group-item fw_bold">CA SĨ
+                <li class="list-group-item fw_bold pe-0">CA SĨ
                     <ul>
                         <a href="{{url('admin/add-artist')}}" class=" text-decoration-none">
-                            <li class="list-group-item border-0">Thêm ca sĩ</li>
+                            <li class="list-group-item border-0 adminSidebarTag">Thêm ca sĩ</li>
                         </a>
                         <a href="{{url('admin/list-artist')}}" class=" text-decoration-none">
-                            <li class="list-group-item border-0">Danh sách ca sĩ</li>
+                            <li class="list-group-item border-0 adminSidebarTag">Danh sách ca sĩ</li>
                         </a>
                     </ul>
                 </li>
 
-                <li class="list-group-item fw_bold">NHẠC SĨ
+                <li class="list-group-item fw_bold pe-0">NHẠC SĨ
                     <ul>
                         <a href="{{url('admin/add-author')}}" class=" text-decoration-none">
-                            <li class="list-group-item border-0">Thêm nhạc sĩ</li>
+                            <li class="list-group-item border-0 adminSidebarTag">Thêm nhạc sĩ</li>
                         </a>
                         <a href="{{url('admin/list-author')}}" class=" text-decoration-none">
-                            <li class="list-group-item border-0">Danh sách nhạc sĩ</li>
+                            <li class="list-group-item border-0 adminSidebarTag">Danh sách nhạc sĩ</li>
                         </a>
                     </ul>
                 </li>
 
-                <li class="list-group-item fw_bold">BÀI HÁT
+                <li class="list-group-item fw_bold pe-0">BÀI HÁT
                     <ul>
                         <a href="{{url('admin/add-song')}}" class=" text-decoration-none">
-                            <li class="list-group-item border-0">Thêm bài hát</li>
+                            <li class="list-group-item border-0 adminSidebarTag">Thêm bài hát</li>
                         </a>
                         <a href="{{url('admin/list-song')}}" class=" text-decoration-none">
-                            <li class="list-group-item border-0">Danh sách bài hát</li>
+                            <li class="list-group-item border-0 adminSidebarTag">Danh sách bài hát</li>
                         </a>
                     </ul>
                 </li>
-                <li class="list-group-item fw_bold">
-                    <a href="" class=" text-decoration-none" style="color: #000000">FEEDBACK FROM USER</a>
+                <li class="list-group-item fw_bold adminSidebarTag">
+                    <a href="{{url('admin/feedback')}}" class=" text-decoration-none" style="color: #000000">FEEDBACK FROM USER</a>
                 </li>
             </ul>
         </div>
@@ -70,6 +70,6 @@
             @yield('adminMain')
         </div>
     </div>
-    
+<script src="{{asset('js/AdminPage.js')}}"></script>
 </body>
 </html>

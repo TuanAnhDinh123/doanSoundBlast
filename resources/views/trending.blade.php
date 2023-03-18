@@ -16,8 +16,8 @@
         </div>        
     </div>
     {{-- bài hát --}}
-    <div class="col-3">
-        <p>
+    <div class="col-3 d-flex">
+        <p class="my-auto" style="height:34px">
             <a class="link" href="{{route('detail', ['id' => $song->songID])}}">{{$song->songName}}
             </a>
         </p>
@@ -31,8 +31,8 @@
         @endforeach
     </div>
     {{-- thể loại --}}
-    <div class="col-2">
-        <p class="sub-string">{{$song->genreName}}</p>
+    <div class="col-2 d-flex">
+        <p class="sub-string my-auto" style="height:34px;">{{$song->genreName}}</p>
     </div>
 
     <div class="col-3 row" style="position: relative">

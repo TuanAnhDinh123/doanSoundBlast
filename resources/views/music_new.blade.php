@@ -16,8 +16,8 @@
             </div>
         </div>
         {{-- tên bài hát --}}
-        <div class="col-7">
-            <p>
+        <div class="col-7 d-flex ps-0">
+            <p class="my-auto" style="height:34px">
                 <a class="link" href="{{route('detail', ['id' => $song->songID])}}">{{$song->songName}}
                 </a>
             </p>
@@ -39,12 +39,12 @@
     <div class="col-4 row" style="position: relative">     
         {{-- thời gian --}}
         <div class="col-7 row d-flex">
-            <p class="text-left">{{$song->diffTime}}</p>
+            <p class="text-left my-auto">{{$song->diffTime}}</p>
         </div>  
           {{-- tim --}}
-        <div class="col-4 row">
+        <div class="col-4 row d-flex">
             @if (!empty($user))    
-                <p class="likeIconContainer">
+                <p class="likeIconContainer my-auto">
                     <span class="numberOfLike">{{$song->numberOfLike}}</span>K
                     <span class="likeIconClass" type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart"

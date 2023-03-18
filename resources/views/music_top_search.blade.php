@@ -14,8 +14,8 @@
         </div>
     </div> 
     {{-- bài hát --}}
-    <div class="col-3">
-        <p>
+    <div class="col-3 d-flex">
+        <p class="my-auto" style="height:34px">
             <a class="link" href="{{route('detail', ['id' => $song->songID])}}">{{$song->songName}}
             </a>
         </p>

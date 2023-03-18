@@ -1,5 +1,4 @@
 @extends('layouts/admin')
-@extends('layouts/adminlayout')
 @section('adminMain')
 
 <div class="row">
@@ -15,11 +14,13 @@
     </tr>
     </thead>
     <tbody>
+        @foreach ($feedbacks as $index=>$feedback)
         <tr>
-            <th class="col-1" >1</th>
-            <td class="col-3" >khanhnhat29</td>
-            <td class="col-8" >Giao diện ok, dễ nhìn, thân thiện  </td>    
+            <th class="col-1" >{{$index+1}}</th>
+            <td class="col-3" >{{$feedback->name}}</td>
+            <td class="col-8" >{{$feedback->fbContent}}</td>    
         </tr>
+        @endforeach
     </tbody>
     </table>
         

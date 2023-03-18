@@ -16,8 +16,8 @@
             <img class="img-thumbnail" src="{{asset('uploads/images/song/'.$song->img)}}" alt="">
         </div>
     </div>
-    <div class="col-3">
-        <p>
+    <div class="col-3 d-flex">
+        <p class="my-auto" style="height:34px">
             <a class="link songNameContainer" href="{{route('detail', ['id' => $song->songID])}}" >{{$song->songName}}
             </a>
         </p>

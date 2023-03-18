@@ -156,7 +156,6 @@ class AdminController extends Controller
         ->with(['genreList'=>$genreList, 'artistList'=>$artistList, 'authorList'=>$authorList, 'song'=>$song, 'songArtists'=>$songArtists]);
     }
     public function editSong(Request $request, $id){
-        
         //add song to song table
         $theloai = $request->post('txtGenre');
         $casi['txtArtist'] = $request->txtArtist;
@@ -200,5 +199,14 @@ class AdminController extends Controller
         }
         
         return $this->listsong();
+    }
+    public function readFeedback(){
+        $feedbacks = DB::table('feedback')
+        ->join('users','id','userID')
+        ->orderBy('fbID', 'desc')
+        ->select()->get();
+
+        return view('v_admin.all_feedback')->with(['feedbacks'=>$feedbacks]);
+
     }
 }
