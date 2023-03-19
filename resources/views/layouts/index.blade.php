@@ -167,7 +167,7 @@
                                         <div class="mt-2">
                                             <p class="fw-bold m-0 mx-1">Trần Ngọc Long</p>
                                             <p class="m-0 mx-3">Sdt: 0705224404</p>
-                                            <p class="m-0 mx-3">Email: 0705224404Ngoclong9988@gmail.com</p>
+                                            <p class="m-0 mx-3">Email: Ngoclong9988@gmail.com</p>
                                         </div>
                                     </div>
                                     <div class="modal-footer">

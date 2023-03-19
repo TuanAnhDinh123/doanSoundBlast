@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="col-3 d-flex">
-        <p class="my-auto" style="height:34px">
+        <p class="my-auto sub-string" style="height:34px">
             <a class="link songNameContainer" href="{{route('detail', ['id' => $song->songID])}}" >{{$song->songName}}
             </a>
         </p>
@@ -155,9 +155,10 @@ var barColors = ["red", "green","blue","orange","brown","yellow","white","pink"]
                 },
                 ticks: {
                         fontColor: "white",
-                        fontSize: 16
-                }
-            }]
+                        fontSize: 16,
+                        beginAtZero: true
+                },
+            }],
         },
         legend: {display: false},
         title: {
