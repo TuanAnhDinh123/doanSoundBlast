@@ -59,11 +59,32 @@ for (i=0; i<sidebarTag.length; i++) {
 
 
 //Handle Tooltip
-    // $(document).ready(function(){
-    // $('[data-toggle="tooltip"]').tooltip();   
-    // });
-// Initialize tooltips
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'))
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
 })
+
+// Handl highlight search key
+if (document.URL.includes("search?")){
+   var songNameSearch = document.getElementsByClassName('search-songName');
+   var searchKey = document.querySelector('.input-search').value;
+   for (i=0; i<songNameSearch.length; i++){
+        str = songNameSearch[i].textContent;
+        strCompare = str.toLowerCase();
+        strCompare = removeAccents(strCompare);
+        console.log(strCompare);
+        keyCompare = searchKey.toLowerCase();
+        keyCompare = removeAccents(keyCompare)
+        var subStrIndex = strCompare.search(keyCompare);
+        if (subStrIndex >= 0) { 
+            str = str.substring(0,subStrIndex) + "<span class='searchHighlight'>" + str.substring(subStrIndex,subStrIndex+searchKey.length) + "</span>" + str.substring(subStrIndex + searchKey.length);
+            songNameSearch[i].innerHTML = str;
+        }
+    }
+    console.log(searchKey);
+}
+function removeAccents(str) {
+    return str.normalize('NFD')
+              .replace(/[\u0300-\u036f]/g, '')
+              .replace(/đ/g, 'd').replace(/Đ/g, 'D');
+  }

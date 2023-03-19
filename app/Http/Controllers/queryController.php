@@ -138,7 +138,7 @@ class queryController extends Controller
 
         $user = $this->authUser();
         return view("music_search")
-        ->with(['songs'=>$songs, 'songArtists'=>$songArtists, 'result'=>$result, 'user'=>$user]);
+        ->with(['songs'=>$songs, 'songArtists'=>$songArtists, 'result'=>$result, 'user'=>$user, 'searchKey'=>$key]);
     }
     
     public function topSearch(){

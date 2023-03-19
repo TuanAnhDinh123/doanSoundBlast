@@ -110,9 +110,9 @@ class AdminController extends Controller
     }
     public function addSong(Request $request){
         
-        $request->validate([
-            'txtMp3' => 'max:10120', //10MB 
-        ]);
+        // $request->validate([
+        //     'txtMp3' => 'max:10120', //10MB 
+        // ]);
         //Store file
         $image = $request->file('txtImg');
         $mp3 = $request->file('txtMp3');

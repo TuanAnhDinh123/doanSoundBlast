@@ -177,3 +177,6 @@
         transform: rotate(360deg);
     }
 }
+.searchHighlight{
+    background-color: orange;
+}

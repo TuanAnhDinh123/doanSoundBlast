@@ -48,9 +48,9 @@
                                 <form class="form-inline my-2 my-lg-0" role="search" action="{{route('search')}}">
                                     <div class="form-group has-search">
                                         <!-- <span class="fa fa-search"></span> -->
-                                        <input type="text" style="background:#6c3b9f;border:0px;border-radius: 20px;"
+                                        <input type="text" style="background:#6c3b9f;border:0px;border-radius: 20px;color:#ffffff;"
                                             name="name" class="form-control input-search"
-                                            placeholder="Tìm kiếm bài hát">
+                                            placeholder="Tìm kiếm bài hát" value="{{ !empty($searchKey) ? $searchKey : ''}}">
                                     </div>
                                     <button type="submit" class="icon-search">
                                         <div class="icon-search" style="
