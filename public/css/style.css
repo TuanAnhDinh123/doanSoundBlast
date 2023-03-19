@@ -157,4 +157,23 @@
     cursor: default;
     
 }
-
+.rotateDisk{
+    /* width: 200px; */
+    /* height: 200px; */
+    /* background-image: url("../—Pngtree—fan\ icon_4421643.png"); */
+    /* background-repeat: no-repeat; */
+    /* background-position: center; */
+    /* background-size: cover; */
+    animation-name: rotate_disk;
+    animation-duration: 10000ms;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+@keyframes rotate_disk{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}

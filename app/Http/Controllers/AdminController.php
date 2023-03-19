@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use DB;
+use Illuminate\Support\Facades\Auth;
+
 class AdminController extends Controller
 {
     public function addcate(Request $request){
@@ -107,6 +109,10 @@ class AdminController extends Controller
         return view('v_admin.add_song') ->with(['genres'=>$genres, 'artists'=>$artists, 'authors'=>$authors]);
     }
     public function addSong(Request $request){
+        
+        $request->validate([
+            'txtMp3' => 'max:10120', //10MB 
+        ]);
         //Store file
         $image = $request->file('txtImg');
         $mp3 = $request->file('txtMp3');

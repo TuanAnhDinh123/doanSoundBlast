@@ -232,10 +232,10 @@
             <div id="audio-player-container">
                 <audio src="{{asset('uploads/music/EmDongY.mp3')}}" preload="metadata" loop></audio>
                 <div class="left-container col-3">
-                    <div class="col-2">
-                        <img class="img-thumbnail" id="left-container-img" src="" alt="">
+                    <div class="col-3 d-flex">
+                        <img class="img-thumbnail ms-auto" id="left-container-img" src="" alt="">
                     </div>
-                    <div class="col-10 pl-2">
+                    <div class="col-9 pl-2 ms-0">
                     @if (!empty($user))    
                         <p class="d-none" id="userIDcontainer">{{$user->id}}</p>
                     @else

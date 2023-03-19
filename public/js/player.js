@@ -102,9 +102,6 @@ const setSliderMax = () => {
 const displayBufferedAmount = () => {
     const bufferedAmount = Math.floor(audio.buffered.end(audio.buffered.length - 1));
     audioPlayerContainer.style.setProperty('--buffered-width', `${(bufferedAmount / seekSlider.max) * 100}%`);
-    console.log('bufferAmount');
-    console.log(bufferedAmount);
-    // console.log("audio.buffer.length".audio.buffered.length);
 }
 
 const whilePlaying = () => {
@@ -139,7 +136,6 @@ seekSlider.addEventListener('input', () => {
 seekSlider.addEventListener('change', () => {
     audio.onprogress  = function(){
         audio.currentTime = 100;
-        console.log(audio.currentTime)
 
     }
     if(!audio.paused) {
@@ -191,8 +187,6 @@ for (var i=0; i<playBtns.length; i++){
         xmlhttp.open("GET","hear/"+songID.innerHTML+"/"+userID.innerHTML,true);
         xmlhttp.send();
         numberOfHear[songNo.innerHTML].innerHTML ++;
-        // var userID = <?php json_encode($uses); ?>
-        console.log(userID);
     });
     songArr.push([sourceLink[i].innerHTML, songIMG[i].innerHTML, songName[i].innerHTML]);
 }
@@ -215,7 +209,6 @@ nextBtn.addEventListener("click",function(){
     }
     const imgContainer = document.getElementById("left-container-img");
     const nameContainer = document.getElementById("left-container-name");
-    console.log(songIndex);
     audio.src = songArr[songIndex][0];
     imgContainer.src = songArr[songIndex][1];
     nameContainer.innerHTML = songArr[songIndex][2];
@@ -240,3 +233,17 @@ preBtn.addEventListener("click",function(){
         audio.play();
     }
 })
+
+// Handle rotate disk
+const imgContainer = document.getElementById("left-container-img");
+audio.addEventListener('play', function(){
+    if (imgContainer.className.includes('rotateDisk')) {
+
+    } else {
+        imgContainer.className += " rotateDisk";
+    }
+    console.log(imgContainer.className)
+});
+audio.addEventListener('pause', function(){
+    imgContainer.className = imgContainer.className.replace(" rotateDisk", "");
+});
