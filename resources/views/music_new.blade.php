@@ -1,7 +1,7 @@
 @extends('layouts/index')
 @section('content')
 @php $songNo=0; @endphp
-<h2 class="mb-3 title">Nhạc mới</h2>
+<h2 class="mb-3 title">New Songs</h2>
 @foreach ($songs as $index=>$song)
 <div class="row mb-2 music"
     style="border-radius:10px;border:1px solid;border-color: aquamarine;padding:5px;align-items: center">

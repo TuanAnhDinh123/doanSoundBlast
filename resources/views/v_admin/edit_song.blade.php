@@ -37,7 +37,7 @@
                         <label for="txtArtist[]">Tên ca sĩ</label>
                         <select name="txtArtist[]" class="form-control" multiple>
                             @foreach($artistList as $artist)
-                                    @if ($artist->artistID == $songArtists[0]->artistID || $artist->artistID == $songArtists[1]->artistID)
+                                    @if ($artist->artistID == $songArtists[0]->artistID)
                                         <option value="{{$artist->artistID}}" selected>{{$artist->artistName}}</option>
                                     @else
                                         <option value="{{$artist->artistID}}">{{$artist->artistName}}</option>

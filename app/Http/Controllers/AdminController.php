@@ -133,8 +133,12 @@ class AdminController extends Controller
         // add artist to song-artist table
         $songInfo = DB::table('song')
         ->orderBy('songID', 'desc')->first();
-        for ($i=0;$i<2;$i++){
-            DB::table('song-artist')->insert(['songID'=>$songInfo->songID, 'artistID'=>$casi['txtArtist'][$i]]);
+        if (count($casi) ==1 ) {
+            DB::table('song-artist')->insert(['songID'=>$songInfo->songID, 'artistID'=>$casi['txtArtist'][0]]);
+        } else {
+            for ($i=0;$i<2;$i++){
+                DB::table('song-artist')->insert(['songID'=>$songInfo->songID, 'artistID'=>$casi['txtArtist'][$i]]);
+            }
         }
         
         return $this->listsong();

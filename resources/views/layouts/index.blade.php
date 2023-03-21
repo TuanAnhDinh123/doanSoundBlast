@@ -50,7 +50,7 @@
                                         <!-- <span class="fa fa-search"></span> -->
                                         <input type="text" style="background:#6c3b9f;border:0px;border-radius: 20px;color:#ffffff;"
                                             name="name" class="form-control input-search"
-                                            placeholder="Tìm kiếm bài hát" value="{{ !empty($searchKey) ? $searchKey : ''}}">
+                                            placeholder="Search" value="{{ !empty($searchKey) ? $searchKey : ''}}">
                                     </div>
                                     <button type="submit" class="icon-search">
                                         <div class="icon-search" style="
@@ -81,8 +81,8 @@
                             </svg>                           
                             </button>
                                 <ul class="dropdown-menu mt-2" style="background:#6633CC" >
-                                    <li class="dropdown-item"><a class="nav-link active" type="button" data-bs-toggle="modal"  data-bs-target="#InfoModal" >Giới thiệu</a></li>
-                                    <li class="dropdown-item"><a class="nav-link active"  type="button" data-bs-toggle="modal"  data-bs-target="#contactModal"  >Liên Hệ</a></li>
+                                    <li class="dropdown-item"><a class="nav-link active" type="button" data-bs-toggle="modal"  data-bs-target="#InfoModal" >Summary</a></li>
+                                    <li class="dropdown-item"><a class="nav-link active"  type="button" data-bs-toggle="modal"  data-bs-target="#contactModal"  >Contact</a></li>
                                     @if (!empty($user))    
                                         <li class="dropdown-item"><a class="nav-link active" type="button" data-bs-toggle="modal" data-bs-target="#feedbackModal">Send Feedback</a></li>
                                     @else
@@ -97,7 +97,7 @@
                                     <div class="modal-content">
                                     <!-- Modal Header -->
                                     <div class="modal-header">
-                                        <h4 class="modal-title">Gửi feedback cho chúng tôi</h4>
+                                        <h4 class="modal-title">Give feedback to us</h4>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                     </div>
                                     <!-- Modal body -->
@@ -111,7 +111,7 @@
                                             <textarea name="feedback" id="" cols="50" rows="5" class="form-control border border-dark"></textarea>
                                         </div>                    
                                         <div class="form-group py-3 ">
-                                            <input type="submit" value="Gửi" class="btn btn-primary mb-2 ">
+                                            <input type="submit" value="Send" class="btn btn-primary mb-2 ">
                                         </div>
                                     @endif
                                     </form>
@@ -213,9 +213,9 @@
                             </button>
                                 <ul class="dropdown-menu mt-3" style="background:#6633CC">
                                 @if (!empty($user))    
-                                <li class="dropdown-item"><a class="nav-link active" class="dropdown-item" href="/logout">Đăng Xuất</a></li>
+                                <li class="dropdown-item"><a class="nav-link active" class="dropdown-item" href="/logout">LogOut</a></li>
                                 @else                        
-                                <li class="dropdown-item"><a class="nav-link active" href="/login">Đăng Nhập</a></li>
+                                <li class="dropdown-item"><a class="nav-link active" href="/login">Login</a></li>
                                 @endif
                                 </ul>
                             </div>
